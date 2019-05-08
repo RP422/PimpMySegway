@@ -1,0 +1,107 @@
+html, body {
+  margin: 0px;
+  height: 100%;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
+}
+
+.box {
+  flex: 1;
+  border: 1px solid black;
+}
+.container {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+
+#mainContainer {
+  height: 100%;
+}
+#preBuiltContainer {
+  flex: 0.2;
+  overflow-y: scroll;
+}
+#segwayViewContainer {
+  flex: 0.5;
+}
+#optionsContainer {
+  flex: 0.3;
+}
+
+#segwayArea, #optionsArea {
+  flex: 0.8;
+}
+#priceArea, #buttonArea {
+  flex: 0.2;
+}
+
+#optionsArea {
+  overflow-y: scroll;
+}
+.options-size {
+  min-height: 200px;
+  border: 1px solid black;
+}
+
+.pre-built-size {
+  min-height: 200px;
+  border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 750px) {
+  #mainContainer {
+    flex-direction: column;
+  }
+  #preBuiltContainer {
+    flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    min-height: 170px;
+  }
+  .pre-built-size {
+    min-height: auto;
+    min-width: 200px;
+  }
+  #segwayViewContainer {
+    flex-direction: row-reverse;
+  }
+  #segwayArea {
+    flex: 0.6;
+  }
+  #priceArea {
+    flex: 0.4;
+  }
+  #optionsContainer {
+    flex: 0.5;
+  }
+  #optionsArea {
+    flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+  .options-size {
+    min-height: auto;
+    min-width: 100%;
+  }
+  #buttonArea {
+    flex: 0.3;
+  }
+}
+
