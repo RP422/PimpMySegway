@@ -5,7 +5,8 @@
         "Color": "Pink",
         "Tire": "Bike",
         "Engine": "Electric",
-        "Custom":["Glitter", "Handlebar"]
+        "Custom":["Glitter", "Handlebar"],
+        "Url":" "
     },
     {
         "Name": "Big Boi",
@@ -13,7 +14,8 @@
         "Color": "Green",
         "Tire": "Off Road",
         "Engine": "Racing",
-        "Custom":["Headlights", "Speakers"]   
+        "Custom":["Headlights", "Speakers"],
+        "Url":" "   
     },
     {
         "Name": "Sad Lad",
@@ -21,7 +23,8 @@
         "Color": "Blue",
         "Tire": "Regular",
         "Engine": "Electric",
-        "Custom":["Umbrella", "Thermometer"]
+        "Custom":["Umbrella", "Thermometer"],
+        "Url":" "
     },
     {
         "Name": "Lightning McQueen",
@@ -29,7 +32,8 @@
         "Color": "Red",
         "Tire": "Regular",
         "Engine": "Racing",
-        "Custom":["Headlights", "Fan"]
+        "Custom":["Headlights", "Fan"],
+        "Url":" "
     },
     {
         "Name": "Explorer",
@@ -37,6 +41,7 @@
         "Color": "Yellow",
         "Tire": "Off Road",
         "Engine": "ECO",
-        "Custom":["Bag", "Umbrella"]
+        "Custom":["Bag", "Umbrella"],
+        "Url":" "
     }
 ]
