@@ -28,7 +28,7 @@ data = {
         "Thermometer"
     ],
     "preBuilts": {
-        "Princess": {
+        "princess": {
             "color": "Pink",
             "engine": "Power Efficent",
             "wheel": "Standard",
@@ -41,7 +41,7 @@ data = {
             "Umbrella":        false,
             "Thermometer":     false
         },
-        "Big Boi": {
+        "big_boi": {
             "color": "Green",
             "engine": "High Power",
             "wheel": "Monster",
@@ -54,7 +54,7 @@ data = {
             "Umbrella":        false,
             "Thermometer":     false
         },
-        "Sad Lad": {
+        "sad_lad": {
             "color": "Blue",
             "engine": "Power Efficent",
             "wheel": "Standard",
@@ -67,7 +67,7 @@ data = {
             "Umbrella":        true,
             "Thermometer":     true
         },
-        "Lightning McQueen": {
+        "lightning_mcqueen": {
             "color": "Red",
             "engine": "High Speed",
             "wheel": "Off-road",
@@ -80,7 +80,7 @@ data = {
             "Umbrella":        false,
             "Thermometer":     false
         },
-        "Explorer": {
+        "explorer": {
             "color": "Yellow",
             "engine": "High Power",
             "wheel": "Off-road",
