@@ -1,3 +1,4 @@
+// TODO Remove this and replace it with a json load
 data = {
     "colors": [
         "Pink",
@@ -31,116 +32,122 @@ data = {
             "color": "Pink",
             "engine": "Power Efficent",
             "wheel": "Standard",
-            "sparkles":        true,
-            "bag":             false,
-            "headlight":       false,
-            "fan":             false,
-            "handlebarCovers": true,
-            "speakers":        false,
-            "umbrella":        false,
-            "thermometer":     false
+            "Sparkles":        true,
+            "Bag":             false,
+            "Headlight":       false,
+            "Fan":             false,
+            "HandlebarCovers": true,
+            "Speakers":        false,
+            "Umbrella":        false,
+            "Thermometer":     false
         },
         "Big Boi": {
             "color": "Green",
             "engine": "High Power",
             "wheel": "Monster",
-            "sparkles":        false,
-            "bag":             false,
-            "headlight":       true,
-            "fan":             false,
-            "handlebarCovers": false,
-            "speakers":        true,
-            "umbrella":        false,
-            "thermometer":     false
+            "Sparkles":        false,
+            "Bag":             false,
+            "Headlight":       true,
+            "Fan":             false,
+            "HandlebarCovers": false,
+            "Speakers":        true,
+            "Umbrella":        false,
+            "Thermometer":     false
         },
         "Sad Lad": {
             "color": "Blue",
             "engine": "Power Efficent",
             "wheel": "Standard",
-            "sparkles":        false,
-            "bag":             false,
-            "headlight":       false,
-            "fan":             false,
-            "handlebarCovers": false,
-            "speakers":        false,
-            "umbrella":        true,
-            "thermometer":     true
+            "Sparkles":        false,
+            "Bag":             false,
+            "Headlight":       false,
+            "Fan":             false,
+            "HandlebarCovers": false,
+            "Speakers":        false,
+            "Umbrella":        true,
+            "Thermometer":     true
         },
         "Lightning McQueen": {
             "color": "Red",
             "engine": "High Speed",
             "wheel": "Off-road",
-            "sparkles":        false,
-            "bag":             false,
-            "headlight":       true,
-            "fan":             true,
-            "handlebarCovers": false,
-            "speakers":        false,
-            "umbrella":        false,
-            "thermometer":     false
+            "Sparkles":        false,
+            "Bag":             false,
+            "Headlight":       true,
+            "Fan":             true,
+            "HandlebarCovers": false,
+            "Speakers":        false,
+            "Umbrella":        false,
+            "Thermometer":     false
         },
         "Explorer": {
             "color": "Yellow",
             "engine": "High Power",
             "wheel": "Off-road",
-            "sparkles":        false,
-            "bag":             true,
-            "headlight":       false,
-            "fan":             false,
-            "handlebarCovers": false,
-            "speakers":        false,
-            "umbrella":        true,
-            "thermometer":     false
+            "Sparkles":        false,
+            "Bag":             true,
+            "Headlight":       false,
+            "Fan":             false,
+            "HandlebarCovers": false,
+            "Speakers":        false,
+            "Umbrella":        true,
+            "Thermometer":     false
         }
     },
     "currentSegway": {
         "color": "Red",
         "engine": "Power Efficent",
         "wheel": "Standard",
-        "sparkles":        false,
-        "bag":             false,
-        "headlight":       false,
-        "fan":             false,
-        "handlebarCovers": false,
-        "speakers":        false,
-        "umbrella":        false,
-        "thermometer":     false
+        "Sparkles":        false,
+        "Bag":             false,
+        "Headlight":       false,
+        "Fan":             false,
+        "HandlebarCovers": false,
+        "Speakers":        false,
+        "Umbrella":        false,
+        "Thermometer":     false
     },
 };
 
-data.colors.forEach(function(element) {
-    // Create the Color options
-});
-
-data.engines.forEach(function(element) {
-    // Create the Engine Options
-});
-
-data.wheels.forEach(function(element) {
-    // Create the Wheel Options
-});
-
-data.otherFeatures.forEach(function(element) {
-    // Create the other options
-});
+// Containers to plop things in.
+var colorContainer = document.getElementById("colors");
+var engineContainer = document.getElementById("engines");
+var wheelContainer = document.getElementById("wheel");
+var engineContainer = document.getElementById("other");
+var equippedOptions = "";
 
 function updatePage() {
-    // Create variable "price"
-    // Add the price for each part on data.currentSegway
+    // TODO Implement price updates
+    // Tally the price for every equipped part    
     // If data.currentSegway matches an object in data.preBuilts:
     //   price -= 300
+
+    document.getElementById("price").innerHTML = "$" + price;
     
-    // Pull up the correct image
+    // TODO Replace this with the function to update the image.
 
-    // Create the option list for data.currentSegway
+    equippedOptions = data.currentSegway.engine + " engine";
+    equippedOptions += "<br />" + data.currentSegway.wheel + " wheels";
+    equippedOptions += "<br />" + data.currentSegway.color + " paint job";
+    
+    data.otherFeatures.forEach(function(option) {
+        var optionButton = document.getElementById(option);
 
-    // Update the price block
-    // Update image
-    // Update the option list
+        if(currentSegway[option]) {
+            optionButton.classList.add("active");
+            equippedOptions += "<br />" + option;
+        }
+        else {
+            optionButton.classList.remove("active");
+        }
+    });
+
+    document.getElementById("equippedOptionsList").innerHTML = equippedOptions;
 }
 
 function setPrebuilt(name) {
-    // Set data.currentSegawy to the named prebuilt
+    // This should work, but needs testing of course.
+    currentSegway = data.preBuilts[name];
     updatePage();
 }
 
@@ -160,10 +167,56 @@ function updateWheel(newWheel) {
 }
 
 function updateOption(option) {
-    // If data.currentSegway.option is false:
-    //   Set data.currentSegway.option to true
-    // Else
-    //   Set data.currentSegway.option to false
+    // Same as with setPrebuilt(). This should work,
+    //   but is untested.
+    if(data.currentSegway[option] == false) {
+        data.currentSegway[option] = true;
+    }
+    else {
+        data.currentSegway[option] = false;
+    }
 
     updatePrice();
+}
+
+// TODO Figure out if these elements need anything inside them 
+//   other than an ID.
+function setupOptions() {
+    data.colors.forEach(function(element) {
+        var newElement = document.createElement("div");
+    
+        // Do stuff with the new element?
+        newElement.id = element;
+    
+        colorContainer.appendChild(newElement);
+    });
+    
+    data.engines.forEach(function(element) {
+        var newElement = document.createElement("div");
+    
+        // Do stuff with the new element?
+        newElement.id = element;
+    
+        engineContainer.appendChild(newElement);
+    });
+    
+    data.wheels.forEach(function(element) {
+        var newElement = document.createElement("div");
+    
+        // Do stuff with the new element?
+        newElement.id = element;
+    
+        wheelContainer.appendChild(newElement);
+    });
+    
+    data.otherFeatures.forEach(function(element) {
+        var newElement = document.createElement("div");
+    
+        // Do stuff with the new element?
+        newElement.id = element;
+    
+        otherContainer.appendChild(newElement);
+    });
+
+    updatePage();
 }
