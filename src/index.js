@@ -1,11 +1,11 @@
 console.log("Hello");
 
-let preBuiltID = ["pre1", "pre2","pre3","pre4","pre5"]
+let preBuiltID = ["princess", "big_boi","sad_lad","lightning_mcqueen","explorer"]
 
 function setEventListener(){
     preBuiltID.forEach((id) => {
         document.getElementById(id).addEventListener("click", function(){
-            
+            setPrebuilt();
         });
     })
 }
