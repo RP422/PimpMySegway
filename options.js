@@ -1,3 +1,4 @@
+// TODO Remove this and replace it with a json load
 data = {
     "colors": [
         "Pink",
@@ -113,38 +114,37 @@ var colorContainer = document.getElementById("colors");
 var engineContainer = document.getElementById("engines");
 var wheelContainer = document.getElementById("wheel");
 var engineContainer = document.getElementById("other");
+var equippedOptions = "";
 
 function updatePage() {
-    // Tally the price for every equipped part
-    var price = 650.99;
-    
+    // TODO Implement price updates
+    // Tally the price for every equipped part    
     // If data.currentSegway matches an object in data.preBuilts:
     //   price -= 300
 
     document.getElementById("price").innerHTML = "$" + price;
     
-    // Pull up the correct image
-    imgSrc = "blahblahblah";
-    document.getElementById("segwayPreview").src = imgSrc;
+    // TODO Replace this with the function to update the image.
 
-    var equippedOptions = data.currentSegway.engine + " engine";
+    equippedOptions = data.currentSegway.engine + " engine";
     equippedOptions += "<br />" + data.currentSegway.wheel + " wheels";
     equippedOptions += "<br />" + data.currentSegway.color + " paint job";
-
-    // Create the option list for data.currentSegway
+    
     data.otherFeatures.forEach(function(option) {
-        equippedOptions += "<br />" + option;
+        var optionButton = document.getElementById(option);
+
+        if(currentSegway[option]) {
+            optionButton.classList.add("active");
+            equippedOptions += "<br />" + option;
+        }
+        else {
+            optionButton.classList.remove("active");
+        }
     });
 
     document.getElementById("equippedOptionsList").innerHTML = equippedOptions;
-    
-    // Do something with the other option buttons to show 
-    //  they're turned on or not?
 }
 
-// If we use the data attributes, we should be able to remove 
-//   the parameter here and just get the data from the calling 
-//   element.
 function setPrebuilt(name) {
     // This should work, but needs testing of course.
     currentSegway = data.preBuilts[name];
@@ -179,8 +179,9 @@ function updateOption(option) {
     updatePrice();
 }
 
+// TODO Figure out if these elements need anything inside them 
+//   other than an ID.
 function setupOptions() {
-    
     data.colors.forEach(function(element) {
         var newElement = document.createElement("div");
     
