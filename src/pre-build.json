@@ -1,47 +1,109 @@
-[
-    {
-        "Name": "Princess",
-        "ID": "pre1",
-        "Color": "Pink",
-        "Tire": "Bike",
-        "Engine": "Electric",
-        "Custom":["Glitter", "Handlebar"],
-        "Url":" "
+{
+    "colors": [
+        "pink",
+        "green",
+        "blue",
+        "red",
+        "yellow"
+    ],
+    "wheels": [
+        "standard",
+        "off-road",
+        "thin"
+    ],
+    "engines": [
+        "contruct_3",
+        "unity",
+        "unreal"
+    ],
+    "otherFeatures": [
+        "bag",
+        "fan",
+        "handlebar_covers",
+        "headlight",
+        "reflectors",
+        "side_mirrors",
+        "speaker",
+        "thermometer"
+    ],
+    "preBuilts": {
+        "princess": {
+            "color": "pink",
+            "engine": "unity",
+            "wheel": "thin",
+            "bag":              false,
+            "fan":              false,
+            "handlebarCovers":  true,
+            "headlight":        false,
+            "reflectors":       false,
+            "sideMirrors":      false,
+            "speaker":          false,
+            "thermometer":      false
+        },
+        "big_boi": {
+            "color": "green",
+            "engine": "unreal",
+            "wheel": "off_road",
+            "bag":              false,
+            "fan":              false,
+            "handlebarCovers":  false,
+            "headlight":        true,
+            "reflectors":       true,
+            "sideMirrors":      false,
+            "speaker":          true,
+            "thermometer":      false
+        },
+        "sad_lad": {
+            "color": "blue",
+            "engine": "construct_3",
+            "wheel": "standard",
+            "bag":              false,
+            "fan":              true,
+            "handlebarCovers":  false,
+            "headlight":        false,
+            "reflectors":       false,
+            "sideMirrors":      false,
+            "speaker":          false,
+            "thermometer":      true
+        },
+        "lightning_mcqueen": {
+            "color": "red",
+            "engine": "unreal",
+            "wheel": "standard",
+            "bag":              false,
+            "fan":              false,
+            "handlebarCovers":  false,
+            "headlight":        true,
+            "reflectors":       false,
+            "sideMirrors":      true,
+            "speaker":          false,
+            "thermometer":      false
+        },
+        "explorer": {
+            "color": "yellow",
+            "engine": "unity",
+            "wheel": "off_road",
+            "bag":              true,
+            "fan":              false,
+            "handlebarCovers":  false,
+            "headlight":        false,
+            "reflectors":       false,
+            "sideMirrors":      false,
+            "speaker":          false,
+            "thermometer":      false
+        }
     },
-    {
-        "Name": "Big Boi",
-        "ID": "pre2",
-        "Color": "Green",
-        "Tire": "Off Road",
-        "Engine": "Racing",
-        "Custom":["Headlights", "Speakers"],
-        "Url":" "   
-    },
-    {
-        "Name": "Sad Lad",
-        "ID": "pre3",
-        "Color": "Blue",
-        "Tire": "Regular",
-        "Engine": "Electric",
-        "Custom":["Umbrella", "Thermometer"],
-        "Url":" "
-    },
-    {
-        "Name": "Lightning McQueen",
-        "ID": "pre4",
-        "Color": "Red",
-        "Tire": "Regular",
-        "Engine": "Racing",
-        "Custom":["Headlights", "Fan"],
-        "Url":" "
-    },
-    {
-        "Name": "Explorer",
-        "ID": "pre5",
-        "Color": "Yellow",
-        "Tire": "Off Road",
-        "Engine": "ECO",
-        "Custom":["Bag", "Umbrella"],
-        "Url":" "
+    "current_segway": {
+        "color": "red",
+        "engine": "unity",
+        "wheel": "standard",
+        "bag":              false,
+        "fan":              false,
+        "handlebarCovers":  false,
+        "headlight":        false,
+        "reflectors":       false,
+        "sideMirrors":      false,
+        "speaker":          false,
+        "thermometer":      false
     }
-]
+}
