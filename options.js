@@ -31,80 +31,80 @@ data = {
             "color": "Pink",
             "engine": "Power Efficent",
             "wheel": "Standard",
-            "sparkles":        true,
-            "bag":             false,
-            "headlight":       false,
-            "fan":             false,
-            "handlebarCovers": true,
-            "speakers":        false,
-            "umbrella":        false,
-            "thermometer":     false
+            "Sparkles":        true,
+            "Bag":             false,
+            "Headlight":       false,
+            "Fan":             false,
+            "HandlebarCovers": true,
+            "Speakers":        false,
+            "Umbrella":        false,
+            "Thermometer":     false
         },
         "Big Boi": {
             "color": "Green",
             "engine": "High Power",
             "wheel": "Monster",
-            "sparkles":        false,
-            "bag":             false,
-            "headlight":       true,
-            "fan":             false,
-            "handlebarCovers": false,
-            "speakers":        true,
-            "umbrella":        false,
-            "thermometer":     false
+            "Sparkles":        false,
+            "Bag":             false,
+            "Headlight":       true,
+            "Fan":             false,
+            "HandlebarCovers": false,
+            "Speakers":        true,
+            "Umbrella":        false,
+            "Thermometer":     false
         },
         "Sad Lad": {
             "color": "Blue",
             "engine": "Power Efficent",
             "wheel": "Standard",
-            "sparkles":        false,
-            "bag":             false,
-            "headlight":       false,
-            "fan":             false,
-            "handlebarCovers": false,
-            "speakers":        false,
-            "umbrella":        true,
-            "thermometer":     true
+            "Sparkles":        false,
+            "Bag":             false,
+            "Headlight":       false,
+            "Fan":             false,
+            "HandlebarCovers": false,
+            "Speakers":        false,
+            "Umbrella":        true,
+            "Thermometer":     true
         },
         "Lightning McQueen": {
             "color": "Red",
             "engine": "High Speed",
             "wheel": "Off-road",
-            "sparkles":        false,
-            "bag":             false,
-            "headlight":       true,
-            "fan":             true,
-            "handlebarCovers": false,
-            "speakers":        false,
-            "umbrella":        false,
-            "thermometer":     false
+            "Sparkles":        false,
+            "Bag":             false,
+            "Headlight":       true,
+            "Fan":             true,
+            "HandlebarCovers": false,
+            "Speakers":        false,
+            "Umbrella":        false,
+            "Thermometer":     false
         },
         "Explorer": {
             "color": "Yellow",
             "engine": "High Power",
             "wheel": "Off-road",
-            "sparkles":        false,
-            "bag":             true,
-            "headlight":       false,
-            "fan":             false,
-            "handlebarCovers": false,
-            "speakers":        false,
-            "umbrella":        true,
-            "thermometer":     false
+            "Sparkles":        false,
+            "Bag":             true,
+            "Headlight":       false,
+            "Fan":             false,
+            "HandlebarCovers": false,
+            "Speakers":        false,
+            "Umbrella":        true,
+            "Thermometer":     false
         }
     },
     "currentSegway": {
         "color": "Red",
         "engine": "Power Efficent",
         "wheel": "Standard",
-        "sparkles":        false,
-        "bag":             false,
-        "headlight":       false,
-        "fan":             false,
-        "handlebarCovers": false,
-        "speakers":        false,
-        "umbrella":        false,
-        "thermometer":     false
+        "Sparkles":        false,
+        "Bag":             false,
+        "Headlight":       false,
+        "Fan":             false,
+        "HandlebarCovers": false,
+        "Speakers":        false,
+        "Umbrella":        false,
+        "Thermometer":     false
     },
 };
 
@@ -114,42 +114,8 @@ var engineContainer = document.getElementById("engines");
 var wheelContainer = document.getElementById("wheel");
 var engineContainer = document.getElementById("other");
 
-data.colors.forEach(function(element) {
-    var newElement = document.createElement("div");
-
-    newElement.id = element;
-    newElement.setAttribute("data-color", element);
-    // Do stuff with the new element.
-
-    colorContainer.appendChild(newElement);
-});
-
-data.engines.forEach(function(element) {
-    var newElement = document.createElement("div");
-
-    // Do stuff with the new element.
-
-    engineContainer.appendChild(newElement);
-});
-
-data.wheels.forEach(function(element) {
-    var newElement = document.createElement("div");
-
-    // Do stuff with the new element.
-
-    wheelContainer.appendChild(newElement);
-});
-
-data.otherFeatures.forEach(function(element) {
-    var newElement = document.createElement("div");
-
-    // Do stuff with the new element.
-
-    otherContainer.appendChild(newElement);
-});
-
 function updatePage() {
-    // Calculate price
+    // Tally the price for every equipped part
     var price = 650.99;
     
     // If data.currentSegway matches an object in data.preBuilts:
@@ -161,16 +127,23 @@ function updatePage() {
     imgSrc = "blahblahblah";
     document.getElementById("segwayPreview").src = imgSrc;
 
+    var equippedOptions = data.currentSegway.engine + " engine";
+    equippedOptions += "<br />" + data.currentSegway.wheel + " wheels";
+    equippedOptions += "<br />" + data.currentSegway.color + " paint job";
+
     // Create the option list for data.currentSegway
-    var options = ["Thing 1", "Thing 2", "Thing 3"];
-    options.forEach(function(opion) {
-        // Append the string or something to the container 
-        //   the options are in.
+    data.otherFeatures.forEach(function(option) {
+        equippedOptions += "<br />" + option;
     });
+
+    document.getElementById("equippedOptionsList").innerHTML = equippedOptions;
+    
+    // Do something with the other option buttons to show 
+    //  they're turned on or not?
 }
 
 // If we use the data attributes, we should be able to remove 
-//   the parameters here and just get the data from the calling 
+//   the parameter here and just get the data from the calling 
 //   element.
 function setPrebuilt(name) {
     // This should work, but needs testing of course.
@@ -204,4 +177,45 @@ function updateOption(option) {
     }
 
     updatePrice();
+}
+
+function setupOptions() {
+    
+    data.colors.forEach(function(element) {
+        var newElement = document.createElement("div");
+    
+        // Do stuff with the new element?
+        newElement.id = element;
+    
+        colorContainer.appendChild(newElement);
+    });
+    
+    data.engines.forEach(function(element) {
+        var newElement = document.createElement("div");
+    
+        // Do stuff with the new element?
+        newElement.id = element;
+    
+        engineContainer.appendChild(newElement);
+    });
+    
+    data.wheels.forEach(function(element) {
+        var newElement = document.createElement("div");
+    
+        // Do stuff with the new element?
+        newElement.id = element;
+    
+        wheelContainer.appendChild(newElement);
+    });
+    
+    data.otherFeatures.forEach(function(element) {
+        var newElement = document.createElement("div");
+    
+        // Do stuff with the new element?
+        newElement.id = element;
+    
+        otherContainer.appendChild(newElement);
+    });
+
+    updatePage();
 }
