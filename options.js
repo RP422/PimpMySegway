@@ -108,39 +108,73 @@ data = {
     },
 };
 
+// Containers to plop things in.
+var colorContainer = document.getElementById("colors");
+var engineContainer = document.getElementById("engines");
+var wheelContainer = document.getElementById("wheel");
+var engineContainer = document.getElementById("other");
+
 data.colors.forEach(function(element) {
-    // Create the Color options
+    var newElement = document.createElement("div");
+
+    newElement.id = element;
+    newElement.setAttribute("data-color", element);
+    // Do stuff with the new element.
+
+    colorContainer.appendChild(newElement);
 });
 
 data.engines.forEach(function(element) {
-    // Create the Engine Options
+    var newElement = document.createElement("div");
+
+    // Do stuff with the new element.
+
+    engineContainer.appendChild(newElement);
 });
 
 data.wheels.forEach(function(element) {
-    // Create the Wheel Options
+    var newElement = document.createElement("div");
+
+    // Do stuff with the new element.
+
+    wheelContainer.appendChild(newElement);
 });
 
 data.otherFeatures.forEach(function(element) {
-    // Create the other options
+    var newElement = document.createElement("div");
+
+    // Do stuff with the new element.
+
+    otherContainer.appendChild(newElement);
 });
 
 function updatePage() {
-    // Create variable "price"
-    // Add the price for each part on data.currentSegway
+    // Calculate price
+    var price = 650.99;
+    
     // If data.currentSegway matches an object in data.preBuilts:
     //   price -= 300
+
+    document.getElementById("price").innerHTML = "$" + price;
     
     // Pull up the correct image
+    imgSrc = "blahblahblah";
+    document.getElementById("segwayPreview").src = imgSrc;
 
     // Create the option list for data.currentSegway
-
-    // Update the price block
-    // Update image
-    // Update the option list
+    var options = ["Thing 1", "Thing 2", "Thing 3"];
+    options.forEach(function(opion) {
+        // Append the string or something to the container 
+        //   the options are in.
+    });
 }
 
+// If we use the data attributes, we should be able to remove 
+//   the parameters here and just get the data from the calling 
+//   element.
 function setPrebuilt(name) {
-    // Set data.currentSegawy to the named prebuilt
+    // This should work, but needs testing of course.
+    currentSegway = data.preBuilts[name];
     updatePage();
 }
 
@@ -160,10 +194,14 @@ function updateWheel(newWheel) {
 }
 
 function updateOption(option) {
-    // If data.currentSegway.option is false:
-    //   Set data.currentSegway.option to true
-    // Else
-    //   Set data.currentSegway.option to false
+    // Same as with setPrebuilt(). This should work,
+    //   but is untested.
+    if(data.currentSegway[option] == false) {
+        data.currentSegway[option] = true;
+    }
+    else {
+        data.currentSegway[option] = false;
+    }
 
     updatePrice();
 }
