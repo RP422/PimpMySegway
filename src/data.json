@@ -98,7 +98,7 @@
             "thermometer":      false
         }
     },
-    "current_segway": {
+    "default_segway": {
         "color": "red",
         "engine": "unity",
         "wheel": "standard",
