@@ -1,0 +1,114 @@
+{
+    "colors": [
+        "pink",
+        "green",
+        "blue",
+        "red",
+        "yellow"
+    ],
+    "wheels": [
+        "standard",
+        "off-road",
+        "thin"
+    ],
+    "engines": [
+        "contruct_3",
+        "unity",
+        "unreal"
+    ],
+    "otherFeatures": [
+        "bag",
+        "fan",
+        "handlebar_covers",
+        "headlight",
+        "reflectors",
+        "side_mirrors",
+        "speaker",
+        "thermometer"
+    ],
+    "preBuilts": {
+        "princess": {
+            "url": "princess.png",
+            "color": "pink",
+            "engine": "unity",
+            "wheel": "thin",
+            "bag":              false,
+            "fan":              false,
+            "handlebar_covers":  true,
+            "headlight":        false,
+            "reflectors":       false,
+            "side_mirrors":      false,
+            "speaker":          false,
+            "thermometer":      false
+        },
+        "big_boi": {
+            "url": "big_boi.png",
+            "color": "green",
+            "engine": "unreal",
+            "wheel": "off_road",
+            "bag":              false,
+            "fan":              false,
+            "handlebar_covers":  false,
+            "headlight":        true,
+            "reflectors":       true,
+            "side_mirrors":      false,
+            "speaker":          true,
+            "thermometer":      false
+        },
+        "sad_lad": {
+            "url": "sad_lad.png",
+            "color": "blue",
+            "engine": "construct_3",
+            "wheel": "standard",
+            "bag":              false,
+            "fan":              true,
+            "handlebar_covers":  false,
+            "headlight":        false,
+            "reflectors":       false,
+            "side_mirrors":      false,
+            "speaker":          false,
+            "thermometer":      true
+        },
+        "lightning_mcqueen": {
+            "url": "lightning_mcqueen.png",
+            "color": "red",
+            "engine": "unreal",
+            "wheel": "standard",
+            "bag":              false,
+            "fan":              false,
+            "handlebar_covers":  false,
+            "headlight":        true,
+            "reflectors":       false,
+            "side_mirrors":      true,
+            "speaker":          false,
+            "thermometer":      false
+        },
+        "explorer": {
+            "url": "explorer.png",
+            "color": "yellow",
+            "engine": "unity",
+            "wheel": "off_road",
+            "bag":              true,
+            "fan":              false,
+            "handlebar_covers":  false,
+            "headlight":        false,
+            "reflectors":       false,
+            "side_mirrors":      false,
+            "speaker":          false,
+            "thermometer":      false
+        }
+    },
+    "default_segway": {
+        "color": "red",
+        "engine": "unity",
+        "wheel": "standard",
+        "bag":              false,
+        "fan":              false,
+        "handlebar_covers":  false,
+        "headlight":        false,
+        "reflectors":       false,
+        "side_mirrors":      false,
+        "speaker":          false,
+        "thermometer":      false
+    }
+}
