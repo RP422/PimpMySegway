@@ -1,4 +1,25 @@
 {
+    "prices": {
+        "pink": 50,
+        "green": 50,
+        "blue": 50,
+        "red": 50,
+        "yellow": 50,
+        "standard": 150,
+        "off-road": 250,
+        "thin": 120,
+        "contruct_3": 320,
+        "unity": 420,
+        "unreal": 720,
+        "bag": 60,
+        "fan": 40,
+        "handlbar_covers": 60,
+        "headlight": 140,
+        "reflectors": 240,
+        "side_mirrors": 340,
+        "speaker": 900,
+        "thermometer": 300
+    },
     "colors": [
         "pink",
         "green",
