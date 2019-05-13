@@ -147,7 +147,7 @@ const updatePage = () => {
 
     equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
 
-    document.getElementById("equippedOptionsList").innerHTML = equippedOptions;
+    document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
 }
 
 const setPrebuilt = name => {
