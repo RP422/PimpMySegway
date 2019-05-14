@@ -145,6 +145,9 @@ const updatePage = () => {
         }
     });
 
+    // if currentSegway matches a pre-built segway
+    //   equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
+
     equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
 
     document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
