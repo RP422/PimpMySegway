@@ -58,6 +58,12 @@ html, body {
   border: 1px solid black;
 }
 
+.image {
+  min-height: 10%;
+  max-height: 10%;
+  min-width: 10%;
+  max-width: 10%;
+}
 
 
 
