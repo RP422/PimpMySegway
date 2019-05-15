@@ -44,6 +44,31 @@ html, body {
 #priceArea, #buttonArea {
   flex: 0.2;
 }
+#segwayCanvas {
+
+}
+
+
+
+.absolute {
+  position: absolute;
+}
+.tires {
+  z-index: 1;
+}
+.colorPic {
+  z-index: 2;  
+}
+.enginePic {
+  z-index: 3;  
+}
+.options {
+  z-index: 4; 
+}
+
+
+
+
 
 #optionsArea {
   overflow-y: scroll;
