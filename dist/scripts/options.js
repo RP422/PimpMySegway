@@ -110,63 +110,84 @@ data = {
 };
 
 // Containers to plop things in.
-var colorContainer = document.getElementById("colors");
-var engineContainer = document.getElementById("engines");
-var wheelContainer = document.getElementById("wheel");
-var engineContainer = document.getElementById("other");
-var equippedOptions = "";
+let colorContainer = document.getElementById("colors");
+let engineContainer = document.getElementById("engines");
+let wheelContainer = document.getElementById("wheel");
+let engineContainer = document.getElementById("other");
+let equippedOptions = "";
+let totalPrice = 0;
 
-function updatePage() {
-    // TODO Implement price updates
-    // Tally the price for every equipped part    
-    // If data.currentSegway matches an object in data.preBuilts:
-    //   price -= 300
-
-    document.getElementById("price").innerHTML = "$" + price;
-    
+const updatePage = () => {
     // TODO Replace this with the function to update the image.
 
-    equippedOptions = data.currentSegway.engine + " engine";
-    equippedOptions += "<br />" + data.currentSegway.wheel + " wheels";
-    equippedOptions += "<br />" + data.currentSegway.color + " paint job";
+    totalPrice = 0;
+
+    equippedOptions = "<tr>" + data.currentSegway.engine + " engine</tr><tr>$" + data.prices.engines[data.currentSegway.engine] + "</tr>";
+    totalPrice += data.prices.engines[data.currentSegway.engine];
+
+    equippedOptions += "<tr>" + data.currentSegway.wheel + " wheels</tr><tr>$" + data.prices.wheels[data.currentSegway.wheel] + "</tr>";
+    totalPrice += data.prices.wheels[data.currentSegway.wheel];
+    
+    equippedOptions += "<tr>" + data.currentSegway.color + " paint job</tr><tr>$" + data.prices.colors[data.currentSegway.color] + "</tr>";
+    totalPrice += data.prices.colors[data.currentSegway.color];
     
     data.otherFeatures.forEach(function(option) {
-        var optionButton = document.getElementById(option);
+        let optionButton = document.getElementById(option);
 
         if(currentSegway[option]) {
             optionButton.classList.add("active");
-            equippedOptions += "<br />" + option;
+
+            equippedOptions += "<tr>" + option + "</tr><tr>$" + data.prices.options[option] + "</tr>";
+            totalPrice += data.prices.options[option];
         }
         else {
             optionButton.classList.remove("active");
         }
     });
 
-    document.getElementById("equippedOptionsList").innerHTML = equippedOptions;
+    if(matchesPrebuilt()) {
+        equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
+    }
+
+    equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
+
+    document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
 }
 
-function setPrebuilt(name) {
+const matchesPrebuilt = () => {
+    match = false;
+
+    data.preBuilts.forEach(function(prebuilt) {
+        if(data.currentSegway == prebuilt) {
+            match = true;
+        }
+    })
+
+    return match;
+}
+
+const setPrebuilt = name => {
     // This should work, but needs testing of course.
     currentSegway = data.preBuilts[name];
     updatePage();
 }
 
-function updateColor(newColor) {
+const updateColor = newColor => {
     data.currentSegway.color = newColor;
     updatePage();
 }
 
-function updateEngine(newEngine) {
+const updateEngine = newEngine => {
     data.ccurrentSegway.engine = newEngine;
     updatePage();
 }
 
-function updateWheel(newWheel) {
+const updateWheel = newWheel => {
     data.ccurrentSegway.wheel = newWheel;
     updatePage();
 }
 
-function updateOption(option) {
+const updateOption = option => {
     // Same as with setPrebuilt(). This should work,
     //   but is untested.
     if(data.currentSegway[option] == false) {
@@ -181,9 +202,9 @@ function updateOption(option) {
 
 // TODO Figure out if these elements need anything inside them 
 //   other than an ID.
-function setupOptions() {
+const setupOptions = () => {
     data.colors.forEach(function(element) {
-        var newElement = document.createElement("div");
+        let newElement = document.createElement("div");
     
         // Do stuff with the new element?
         newElement.id = element;
@@ -192,7 +213,7 @@ function setupOptions() {
     });
     
     data.engines.forEach(function(element) {
-        var newElement = document.createElement("div");
+        let newElement = document.createElement("div");
     
         // Do stuff with the new element?
         newElement.id = element;
@@ -201,7 +222,7 @@ function setupOptions() {
     });
     
     data.wheels.forEach(function(element) {
-        var newElement = document.createElement("div");
+        let newElement = document.createElement("div");
     
         // Do stuff with the new element?
         newElement.id = element;
@@ -210,7 +231,7 @@ function setupOptions() {
     });
     
     data.otherFeatures.forEach(function(element) {
-        var newElement = document.createElement("div");
+        let newElement = document.createElement("div");
     
         // Do stuff with the new element?
         newElement.id = element;
