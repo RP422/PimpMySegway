@@ -145,9 +145,25 @@ const updatePage = () => {
         }
     });
 
+    if(matchesPrebuilt()) {
+        equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
+    }
+
     equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
 
     document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
+}
+
+const matchesPrebuilt = () => {
+    match = false;
+
+    data.preBuilts.forEach(function(prebuilt) {
+        if(data.currentSegway == prebuilt) {
+            match = true;
+        }
+    })
+
+    return match;
 }
 
 const setPrebuilt = name => {
