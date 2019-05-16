@@ -14,18 +14,6 @@ let current_segway = {
   "thermometer":        false
 }
 
-// window.onload = () => {
-//   var c = document.getElementById("segwayArea");
-//   var ctx = c.getContext("2d");
-
-//   //var image = document.getElementById("image");
-//   var imgs = document.getElementsByClassName("image");
-//   for (let img in imgs) {
-//     console.log(imgs[0]);
-//     ctx.drawImage(imgs[img], 0, 0);
-//   }
-// };
-
 function loadData() {
   request.open('GET', 'scripts/data.json');
   request.onload = loadComplete;
@@ -34,40 +22,35 @@ function loadData() {
 
 function loadComplete(evt) {
   let json = JSON.parse(request.responseText);
-  initialSegwayView(json);
-  updateImage();
+  setDefaultSegway(json);
+  updateSegwayImage();
 }
 
-const initialSegwayView = j => {
+const setDefaultSegway = j => {
   for (let index in j.default_segway) {
     for (let i in current_segway) {
       current_segway[i] = j.default_segway[i];
     }
   }
-  //console.log(current_segway);
 }
 
-const updateImage = () => {
+const updateSegwayImage = () => {
+  let segwayStyle = document.getElementById("segwayImages").style;
+  let urlString = "";
   for (let i in current_segway) {
-    //console.log(current_segway[i]);
     let opt = current_segway[i];
     if (opt == true) {
-      console.log("true");
-    }
-    else if (opt == false) {
-      console.log("false");      
-    }
-    else {
-      console.log(i);
-      console.log(opt);
+      urlString += `url(../images/new_images/${i}.png), `;
     }
   }
-  //console.log(current_segway);
-}
-
-const settingSegwayOptions = () => {
+  urlString += `url(../images/new_images/${current_segway.color}.png), url(../images/new_images/${current_segway.wheel}.png)`;
   
+  segwayStyle.background = urlString;
+  segwayStyle.backgroundPosition = "center";
+  segwayStyle.backgroundRepeat = "no-repeat";
+  segwayStyle.backgroundSize = "contain";
 }
 
-//loadData();
+
+loadData();
 

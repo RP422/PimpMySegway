@@ -53,9 +53,6 @@ html, body {
 }
 
 #segwayImages {
-  background: url(../images/new_images/unreal.png) center, url(../images/new_images/headlight.png) center, url(../images/new_images/blue.png) center, url(../images/new_images/off_road.png) center;
-  background-repeat: no-repeat;
-  background-size: contain;
   height: 100%;
   width: 100%;
 }
