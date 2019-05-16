@@ -1,0 +1,36 @@
+#startContainer{
+    height: 100%;
+    align-items: center;
+}
+  
+#titleContainer{
+    font-size: 5em;
+    align-self: center;
+    max-height: fit-content;
+    margin: 20px;
+}
+#startButtonWrapper {
+    align-self: center;
+    max-height: fit-content;
+}
+  
+.startButton{
+    width: 150px;
+    height: 50px;
+}
+
+#finalContainer{
+    height: 100%;
+    align-items: center;
+}
+  
+#finalTitleContainer{
+    font-size: 5em;
+    align-self: center;
+    max-height: fit-content;
+    margin: 20px;
+}
+#finalButtonWrapper {
+    align-self: center;
+    max-height: fit-content;
+}
