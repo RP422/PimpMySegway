@@ -63,6 +63,7 @@ const updatePage = () => {
 
     if(matchesPrebuilt()) {
         equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
+        totalPrice -= 300;
     }
 
     equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
