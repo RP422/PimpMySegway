@@ -38,23 +38,23 @@ const updatePage = () => {
 
     totalPrice = 0;
 
-    equippedOptions = "<tr>" + data.currentSegway.engine + " engine</tr><tr>$" + data.prices.engines[data.currentSegway.engine] + "</tr>";
-    totalPrice += data.prices.engines[data.currentSegway.engine];
+    equippedOptions = "<tr>" + currentSegway.engine + " engine</tr><tr>$" + json.prices[currentSegway.engine] + "</tr>";
+    totalPrice += json.prices[currentSegway.engine];
 
-    equippedOptions += "<tr>" + data.currentSegway.wheel + " wheels</tr><tr>$" + data.prices.wheels[data.currentSegway.wheel] + "</tr>";
-    totalPrice += data.prices.wheels[data.currentSegway.wheel];
+    equippedOptions += "<tr>" + currentSegway.wheel + " wheels</tr><tr>$" + json.prices[currentSegway.wheel] + "</tr>";
+    totalPrice += json.prices[currentSegway.wheel];
     
-    equippedOptions += "<tr>" + data.currentSegway.color + " paint job</tr><tr>$" + data.prices.colors[data.currentSegway.color] + "</tr>";
-    totalPrice += data.prices.colors[data.currentSegway.color];
+    equippedOptions += "<tr>" + currentSegway.color + " paint job</tr><tr>$" + json.prices[currentSegway.color] + "</tr>";
+    totalPrice += json.prices[currentSegway.color];
     
-    data.otherFeatures.forEach(function(option) {
+    json.otherFeatures.forEach(function(option) {
         let optionButton = document.getElementById(option);
 
         if(currentSegway[option]) {
             optionButton.classList.add("active");
 
-            equippedOptions += "<tr>" + option + "</tr><tr>$" + data.prices.options[option] + "</tr>";
-            totalPrice += data.prices.options[option];
+            equippedOptions += "<tr>" + option + "</tr><tr>$" + json.prices[option] + "</tr>";
+            totalPrice += json.prices[option];
         }
         else {
             optionButton.classList.remove("active");
@@ -73,8 +73,8 @@ const updatePage = () => {
 const matchesPrebuilt = () => {
     match = false;
 
-    data.preBuilts.forEach(function(prebuilt) {
-        if(data.currentSegway == prebuilt) {
+    json.preBuilts.forEach(function(prebuilt) {
+        if(currentSegway == prebuilt) {
             match = true;
         }
     })
@@ -84,42 +84,42 @@ const matchesPrebuilt = () => {
 
 const setPrebuilt = name => {
     // This should work, but needs testing of course.
-    currentSegway = data.preBuilts[name];
+    currentSegway = preBuilts[name];
     updatePage();
 }
 
 const updateColor = newColor => {
-    data.currentSegway.color = newColor;
+    currentSegway.color = newColor;
     updatePage();
 }
 
 const updateEngine = newEngine => {
-    data.currentSegway.engine = newEngine;
+    currentSegway.engine = newEngine;
     updatePage();
 }
 
 const updateWheel = newWheel => {
-    data.currentSegway.wheel = newWheel;
+    currentSegway.wheel = newWheel;
     updatePage();
 }
 
 const updateOption = option => {
     // Same as with setPrebuilt(). This should work,
     //   but is untested.
-    if(data.currentSegway[option] == false) {
-        data.currentSegway[option] = true;
+    if(currentSegway[option] == false) {
+        currentSegway[option] = true;
     }
     else {
-        data.currentSegway[option] = false;
+        currentSegway[option] = false;
     }
 
-    updatePrice();
+    updatepage();
 }
 
 // TODO Figure out if these elements need anything inside them 
 //   other than an ID.
 const setupOptions = () => {
-    data.colors.forEach(function(element) {
+    json.colors.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -128,7 +128,7 @@ const setupOptions = () => {
         colorContainer.appendChild(newElement);
     });
     
-    data.engines.forEach(function(element) {
+    json.engines.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -137,7 +137,7 @@ const setupOptions = () => {
         engineContainer.appendChild(newElement);
     });
     
-    data.wheels.forEach(function(element) {
+    json.wheels.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -146,7 +146,7 @@ const setupOptions = () => {
         wheelContainer.appendChild(newElement);
     });
     
-    data.otherFeatures.forEach(function(element) {
+    json.otherFeatures.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
