@@ -14,19 +14,17 @@ let current_segway = {
   "thermometer":        false
 }
 
-window.onload = () => {
-  var c = document.getElementById("segwayArea");
-  var ctx = c.getContext("2d");
+// window.onload = () => {
+//   var c = document.getElementById("segwayArea");
+//   var ctx = c.getContext("2d");
 
-  //var image = document.getElementById("image");
-  var imgs = document.getElementsByClassName("image");
-  console.log(imgs);
-  for (let img in imgs) {
-    //console.log(img);
-    console.log(imgs[0]);
-    ctx.drawImage(imgs[0], 0, 0, 100, 100);
-  }
-};
+//   //var image = document.getElementById("image");
+//   var imgs = document.getElementsByClassName("image");
+//   for (let img in imgs) {
+//     console.log(imgs[0]);
+//     ctx.drawImage(imgs[img], 0, 0);
+//   }
+// };
 
 function loadData() {
   request.open('GET', 'scripts/data.json');
