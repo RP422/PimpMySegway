@@ -19,15 +19,17 @@ const loadData = () => {
     request.open('GET', 'scripts/data.json');
     request.onload = loadComplete;
     request.send();
-    setDefaultSegway(json);
-    updateSegwayImage();
 }
 
 const loadComplete = evt => {
     let json = JSON.parse(request.responseText);
+    setDefaultSegway(json);
+    updateSegwayImage();
+    defaultChecked();
 }
 
 const setDefaultSegway = j => {
+    console.log("setting default segway...");
     for (let index in j.default_segway) {
         for (let i in current_segway) {
         current_segway[i] = j.default_segway[i];
@@ -36,6 +38,7 @@ const setDefaultSegway = j => {
 }
   
 const updateSegwayImage = () => {
+    console.log("updating segway image...");    
     let segwayStyle = document.getElementById("segwayImages").style;
     let urlString = "";
     for (let i in current_segway) {
@@ -50,6 +53,38 @@ const updateSegwayImage = () => {
     segwayStyle.backgroundPosition = "center";
     segwayStyle.backgroundRepeat = "no-repeat";
     segwayStyle.backgroundSize = "contain";
+}
+
+const defaultChecked = () => {
+    for (let i in current_segway) {
+        let opt = current_segway[i];
+        if (opt == true) {
+            let otherOptions = document.getElementById('otherOptionsWrapper').getElementsByTagName('input');
+            for (let option in otherOptions) {
+                if(otherOptions[option].value == i) {
+                    otherOptions[option].checked = true;
+                }
+            } 
+        }
+    }
+    let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input');
+    for (let option in colorOptions) {
+        if (colorOptions[option].value == current_segway.color) {
+            colorOptions[option].checked = true;
+        }
+    }
+    let engineOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input');
+    for (let option in engineOptions) {
+        if (engineOptions[option].value == current_segway.engine) {
+            engineOptions[option].checked = true;
+        }
+    }
+    let tireOptions = document.getElementById('tiresOptionsWrapper').getElementsByTagName('input');
+    for (let option in tireOptions) {
+        if (tireOptions[option].value == current_segway.wheel) {
+            tireOptions[option].checked = true;
+        }
+    }
 }
 
 // Containers to plop things in.
@@ -144,19 +179,19 @@ const setupOptions = () => {
 }
 
 const ifChecked = () => {
-    let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input')
+    let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input');
     for (let i in colorOptions) {
         if (colorOptions[i].checked == true) {
             current_segway.color = colorOptions[i].value;
         }
     }
-    let tiresOptions = document.getElementById('tiresOptionsWrapper').getElementsByTagName('input')
+    let tiresOptions = document.getElementById('tiresOptionsWrapper').getElementsByTagName('input');
     for (let i in tiresOptions) {
         if (tiresOptions[i].checked == true) {
             current_segway.wheel = tiresOptions[i].value;
         }
     }
-    let enginesOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input')
+    let enginesOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input');
     for (let i in enginesOptions) {
         if (enginesOptions[i].checked == true) {
             console.log(enginesOptions[i].value);
@@ -174,3 +209,5 @@ const ifChecked = () => {
     }
     updatePage();
 }
+
+loadData();
