@@ -23,6 +23,10 @@ const loadData = () => {
 
 const loadComplete = evt => {
     let json = JSON.parse(request.responseText);
+
+    container = document.findElementById("mainContainer");
+    container.appendChild(setupOptions());
+
     setDefaultSegway(json);
     updateSegwayImage();
     defaultChecked();
@@ -316,4 +320,3 @@ const ifChecked = () => {
 }
 
 loadData();
-setupOptions();
