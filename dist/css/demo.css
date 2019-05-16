@@ -101,35 +101,35 @@ html, body {
   max-height: fit-content;
 }
 #big_boi {
-  background: url(../images/new_images/big_boi.png) center;
+  background: url(../images/pre-built/big_boi.png) center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
   width: 100%;
 }
 #sad_lad {
-  background: url(../images/new_images/sad_lad.png) center;
+  background: url(../images/pre-built/sad_lad.png) center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
   width: 100%;
 }
 #princess {
-  background: url(../images/new_images/princess.png) center;
+  background: url(../images/pre-built/princess.png) center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
   width: 100%;
 }
 #lightning_mcqueen {
-  background: url(../images/new_images/lightning_mcqueen.png) center;
+  background: url(../images/pre-built/lightning_mcqueen.png) center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
   width: 100%;
 }
 #explorer {
-  background: url(../images/new_images/explorer.png) center;
+  background: url(../images/pre-built/explorer.png) center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;

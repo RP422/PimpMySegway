@@ -44,10 +44,10 @@ const updateSegwayImage = () => {
     for (let i in current_segway) {
         let opt = current_segway[i];
         if (opt == true) {
-            urlString += `url(../images/new_images/${i}.png), `;
+            urlString += `url(../images/options/${i}.png), `;
         }
     }
-    urlString += `url(../images/new_images/${current_segway.engine}.png), url(../images/new_images/${current_segway.color}.png), url(../images/new_images/${current_segway.wheel}.png)`;
+    urlString += `url(../images/engines/${current_segway.engine}.png), url(../images/colors/${current_segway.color}.png), url(../images/tires/${current_segway.wheel}.png)`;
     console.log(urlString);
     segwayStyle.background = urlString;
     segwayStyle.backgroundPosition = "center";
@@ -142,8 +142,7 @@ const matchesPrebuilt = () => {
 
 // This should work, but needs testinge.
 const setPrebuilt = name => {
-    current_segway = preBuilts[name];
-    updatePage();
+    current_segway = preBuilts[name];    updatePage();
 }
 
 const updateOption = option => {
@@ -234,7 +233,7 @@ const setupOptions = () => {
     engineOptionsWrapper.id = "engineOptionsWrapper";
     engineOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
-    json.engines.forEach(function(element) {
+    data.engines.forEach(function(element) {
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
         label.innerHTML = json.htmlValues.engines[element]
@@ -257,7 +256,7 @@ const setupOptions = () => {
     otherOptionsWrapper.id = "otherOptionsWrapper";
     otherOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
-    json.otherFeatures.forEach(function(element) {
+    data.otherFeatures.forEach(function(element) {
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
         label.innerHTML = json.htmlValues.other[element]
