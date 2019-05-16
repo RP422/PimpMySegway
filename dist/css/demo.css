@@ -12,7 +12,7 @@ html, body {
 
 .box {
   flex: 1;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .container {
   display: flex;
@@ -33,6 +33,7 @@ html, body {
 }
 #segwayViewContainer {
   flex: 0.5;
+  flex-direction: column-reverse;
 }
 #optionsContainer {
   flex: 0.3;
@@ -64,10 +65,11 @@ html, body {
 
 #optionsArea {
   overflow-y: scroll;
+  border: 1px solid lightgray;
 }
 .options-size {
   min-height: fit-content;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .option-center {
   align-self: center;
@@ -77,7 +79,7 @@ html, body {
 }
 .optionTitle {
   font-size: 2em;
-  text-align: center;
+  padding-left: 10px;
   justify-content: center;
 }
 .options-wrapper {
@@ -88,7 +90,7 @@ html, body {
 
 .pre-built-size {
   min-height: 200px;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   text-align: center;
 }
 .pre-built-img {
@@ -250,7 +252,6 @@ html, body {
 
 
 
-
 @media only screen and (max-width: 825px) {
   .pre-built-size {
     min-width: 50px;
@@ -259,9 +260,12 @@ html, body {
     max-height: 100%;
     max-width: 100%;
   }
-  #colorOptions, .options-wrapper {
+  #colorOptions, #tiresOptions, #enginesOptions, #otherOption, .options-wrapper {
     flex-direction: row;
     min-width: fit-content;
+  }
+  .optionTitle {
+    margin: 20px;
   }
 }
 
@@ -287,6 +291,7 @@ html, body {
   }
   #priceArea {
     flex: 0.4;
+    padding: 10px;
   }
   #optionsContainer {
     flex: 0.5;
@@ -302,6 +307,10 @@ html, body {
   }
   #buttonArea {
     flex: 0.3;
+  }
+  .option-center {
+    width: fit-content;
+    min-width: fit-content;
   }
 }
 
