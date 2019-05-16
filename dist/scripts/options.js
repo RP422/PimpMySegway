@@ -24,12 +24,12 @@ const loadData = () => {
 const loadComplete = evt => {
     let json = JSON.parse(request.responseText);
 
-    container = document.findElementById("mainContainer");
-    container.appendChild(setupOptions());
+    container = document.getElementById("mainContainer");
+    container.appendChild(setupOptions(json));
 
-    setDefaultSegway(json);
-    updateSegwayImage();
-    defaultChecked();
+    // setDefaultSegway(json);
+    // updateSegwayImage();
+    // defaultChecked();
 }
 
 const setDefaultSegway = j => {
@@ -161,7 +161,7 @@ const updateOption = option => {
 
 // TODO Figure out if these elements need anything inside them 
 //   other than an ID.
-const setupOptions = () => {
+const setupOptions = (json) => {
     options = document.createElement("div");
     options.id = "optionsArea";
     options.setAttribute("class", "box container flex-col");
@@ -237,7 +237,7 @@ const setupOptions = () => {
     engineOptionsWrapper.id = "engineOptionsWrapper";
     engineOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
-    data.engines.forEach(function(element) {
+    json.engines.forEach(function(element) {
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
         label.innerHTML = json.htmlValues.engines[element]
@@ -260,7 +260,7 @@ const setupOptions = () => {
     otherOptionsWrapper.id = "otherOptionsWrapper";
     otherOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
-    data.otherFeatures.forEach(function(element) {
+    json.otherFeatures.forEach(function(element) {
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
         label.innerHTML = json.htmlValues.other[element]
@@ -279,7 +279,7 @@ const setupOptions = () => {
     });
     otherContainer.appendChild(otherOptionsWrapper);
 
-    options.appendChild(colorcontainer);
+    options.appendChild(colorContainer);
     options.appendChild(tiresContainer);
     options.appendChild(engineContainer);
     options.appendChild(otherContainer);
