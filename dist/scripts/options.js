@@ -1,113 +1,29 @@
-// TODO Remove this and replace it with a json load
-data = {
-    "colors": [
-        "Pink",
-        "Green",
-        "Blue",
-        "Red",
-        "Yellow"
-    ],
-    "wheels": [
-        "Standard",
-        "Off-road",
-        "Monster"
-    ],
-    "engines": [
-        "High Power",
-        "High Speed",
-        "Power Efficent"
-    ],
-    "otherFeatures": [
-        "Sparkles",
-        "Bag",
-        "Headlight",
-        "Fan",
-        "HandlebarCovers",
-        "Speakers",
-        "Umbrella",
-        "Thermometer"
-    ],
-    "preBuilts": {
-        "Princess": {
-            "color": "Pink",
-            "engine": "Power Efficent",
-            "wheel": "Standard",
-            "Sparkles":        true,
-            "Bag":             false,
-            "Headlight":       false,
-            "Fan":             false,
-            "HandlebarCovers": true,
-            "Speakers":        false,
-            "Umbrella":        false,
-            "Thermometer":     false
-        },
-        "Big Boi": {
-            "color": "Green",
-            "engine": "High Power",
-            "wheel": "Monster",
-            "Sparkles":        false,
-            "Bag":             false,
-            "Headlight":       true,
-            "Fan":             false,
-            "HandlebarCovers": false,
-            "Speakers":        true,
-            "Umbrella":        false,
-            "Thermometer":     false
-        },
-        "Sad Lad": {
-            "color": "Blue",
-            "engine": "Power Efficent",
-            "wheel": "Standard",
-            "Sparkles":        false,
-            "Bag":             false,
-            "Headlight":       false,
-            "Fan":             false,
-            "HandlebarCovers": false,
-            "Speakers":        false,
-            "Umbrella":        true,
-            "Thermometer":     true
-        },
-        "Lightning McQueen": {
-            "color": "Red",
-            "engine": "High Speed",
-            "wheel": "Off-road",
-            "Sparkles":        false,
-            "Bag":             false,
-            "Headlight":       true,
-            "Fan":             true,
-            "HandlebarCovers": false,
-            "Speakers":        false,
-            "Umbrella":        false,
-            "Thermometer":     false
-        },
-        "Explorer": {
-            "color": "Yellow",
-            "engine": "High Power",
-            "wheel": "Off-road",
-            "Sparkles":        false,
-            "Bag":             true,
-            "Headlight":       false,
-            "Fan":             false,
-            "HandlebarCovers": false,
-            "Speakers":        false,
-            "Umbrella":        true,
-            "Thermometer":     false
-        }
-    },
-    "currentSegway": {
-        "color": "Red",
-        "engine": "Power Efficent",
-        "wheel": "Standard",
-        "Sparkles":        false,
-        "Bag":             false,
-        "Headlight":       false,
-        "Fan":             false,
-        "HandlebarCovers": false,
-        "Speakers":        false,
-        "Umbrella":        false,
-        "Thermometer":     false
-    },
-};
+let request = new XMLHttpRequest();
+
+let current_segway = {
+  "color": "",
+  "engine": "",
+  "wheel": "",
+  "bag":                false,
+  "fan":                false,
+  "handlebar_covers":   false,
+  "headlight":          false,
+  "reflectors":         false,
+  "side_mirrors":       false,
+  "speaker":            false,
+  "thermometer":        false
+}
+
+// Loads the json data
+function loadData() {
+    request.open('GET', 'scripts/data.json');
+    request.onload = loadComplete;
+    request.send();
+}
+
+function loadComplete(evt) {
+    let json = JSON.parse(request.responseText);
+}
 
 // Containers to plop things in.
 let colorContainer = document.getElementById("colors");

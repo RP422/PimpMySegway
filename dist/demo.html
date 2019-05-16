@@ -9,29 +9,37 @@
 </head>
 <body>
   <div id="mainContainer" class="box container flex-row">
+
     <div id="preBuiltContainer" class="box container flex-col">
-      <div class="pre-built-size">Pre-Built 1</div>
-      <div class="pre-built-size">Pre-Built 2</div>
-      <div class="pre-built-size">Pre-Built 3</div>
-      <div class="pre-built-size">Pre-Built 4</div>
-      <div class="pre-built-size">Pre-Built 5</div>
-    </div>
-    <div id="segwayViewContainer" class="box container flex-col">
-      <div id="segwayArea" class="box">
-        <img id="colorPic" class="image absolute" src="images/color/blue.png"/>
-        <img id="enginePic" class="image absolute" src="images/engine/construct_3.png"/>
-        <img id="tiresPic" class="image absolute" src="images/tires/thin.png"/>
-        <img id="optionsPic" class="image absolute" src="images/options/side_mirrors.png"/>
+        <div class="box container flex-col pre-built-size">
+          <div class="box pre-built-name">Big Boi</div>
+          <div id="big_boi" class="box"></div>
+        </div>
+        <div class="box container flex-col pre-built-size">
+          <div class="box pre-built-name">Explorer</div>
+          <div id="explorer" class="box"></div>
+        </div>
+        <div class="box container flex-col pre-built-size">
+          <div class="box pre-built-name">Lightning McQueen</div>
+          <div id="lightning_mcqueen" class="box"></div>
+        </div>
+        <div class="box container flex-col pre-built-size">
+          <div class="box pre-built-name">Princess</div>
+          <div id="princess" class="box"></div>
+        </div>
+        <div class="box container flex-col pre-built-size">
+          <div class="box pre-built-name">Sad Lad</div>
+          <div id="sad_lad" class="box"></div>
+        </div>
       </div>
-      <!-- <canvas id="segwayArea" class="box">
-        <img class="image" src="images/new_images/blue.png"/>
-        <img class="image" src="images/new_images/construct_3.png"/>
-        <img class="image" src="images/new_images/thin.png"/>
-        <img class="image" src="images/new_images/fan.png"/>
-        <img class="image" src="images/new_images/side_mirrors.png"/>
-      </canvas> -->
-      <div id="priceArea" class="box">Price Area</div>
+
+    <div id="segwayViewContainer" class="box container flex-col">
+      <div id="segwayArea" class="box container">
+        <div id="segwayImages"></div>
+      </div>
+      <div id="priceArea" class="box container flex-col">Price Area</div>
     </div>
+
     <div id="optionsContainer" class="box container flex-col">
       <div id="optionsArea" class="box container flex-col">
           <div id="colorOptions" class="options-size">Color Options</div>
@@ -41,7 +49,9 @@
           <div id="fanOption" class="options-size">Fan Options</div>
           <div id="headlightOption" class="options-size">Headlight Options</div>
       </div>
-      <div id="buttonArea" class="box">Finish Button Area</div>
+      <div id="buttonArea" class="box container flex-col">
+        <button class="button">Done</button>
+      </div>
     </div>
   </div>
 

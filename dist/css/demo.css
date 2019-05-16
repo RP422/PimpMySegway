@@ -39,33 +39,25 @@ html, body {
 }
 
 #segwayArea, #optionsArea {
-  flex: 0.8;
+  flex: 0.85;
 }
 #priceArea, #buttonArea {
-  flex: 0.2;
-}
-#segwayCanvas {
-
+  flex: 0.15;
 }
 
-
-
-.absolute {
-  position: absolute;
-}
-.tires {
-  z-index: 1;
-}
-.colorPic {
-  z-index: 2;  
-}
-.enginePic {
-  z-index: 3;  
-}
-.options {
-  z-index: 4; 
+#priceArea {
+  font-size: 2em;
+  text-align: center;
+  justify-content: center;
 }
 
+#segwayImages {
+  background: url(../images/new_images/unreal.png) center, url(../images/new_images/headlight.png) center, url(../images/new_images/blue.png) center, url(../images/new_images/off_road.png) center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
 
 
 
@@ -74,27 +66,101 @@ html, body {
   overflow-y: scroll;
 }
 .options-size {
-  min-height: 200px;
+  min-height: 400px;
   border: 1px solid black;
 }
+
 
 .pre-built-size {
   min-height: 200px;
   border: 1px solid black;
+  text-align: center;
+}
+.pre-built-img {
+  max-height: 100%;
+  max-width: 100%;
+  align-self: center;
+}
+.pre-built-name {
+  font-size: 1em;
+  padding: 5px;
+  max-height: fit-content;
+}
+#big_boi {
+  background: url(../images/new_images/big_boi.png) center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
+#sad_lad {
+  background: url(../images/new_images/sad_lad.png) center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
+#princess {
+  background: url(../images/new_images/princess.png) center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
+#lightning_mcqueen {
+  background: url(../images/new_images/lightning_mcqueen.png) center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
+#explorer {
+  background: url(../images/new_images/explorer.png) center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
 }
 
-.image {
-  min-height: 10%;
-  max-height: 10%;
-  min-width: 10%;
-  max-width: 10%;
+/* button styling */
+#buttonArea {
+  justify-content: center;
+}
+.button {
+  border: none;
+  padding: 15px 30px;
+  text-decoration: none;
+  background: #00BA41;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.button:hover{
+  background: #009634;
+}
+.button:focus {
+  outline: none;
+}
+.button:active {
+  transform: scale(0.99);
 }
 
 
-
-
-
-
+@media screen and (max-width: 825px) {
+  .pre-built-size {
+    min-width: 50px;
+  }
+  .pre-built-img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
 
 @media screen and (max-width: 750px) {
   #mainContainer {
