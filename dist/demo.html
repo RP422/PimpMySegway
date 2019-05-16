@@ -42,12 +42,102 @@
 
     <div id="optionsContainer" class="box container flex-col">
       <div id="optionsArea" class="box container flex-col">
-          <div id="colorOptions" class="options-size">Color Options</div>
-          <div id="tiresOptions" class="options-size">Tires Options</div>
-          <div id="enginesOptions" class="options-size">Engines Options</div>
-          <div id="bagOption" class="options-size">Bag Options</div>
-          <div id="fanOption" class="options-size">Fan Options</div>
-          <div id="headlightOption" class="options-size">Headlight Options</div>
+          <div id="colorOptions" class="box container flex-col options-size">
+            <div class="box container flex-col optionTitle">Colors:</div>
+            <div class="box container flex-col options-wrapper">
+              <label class="box container flex-row radio-container option-center">Red
+                <input type="radio" name="color">
+                <span class="checkmark"></span>
+              </label>
+              <label class="box container flex-row radio-container option-center">Yellow
+                <input type="radio" name="color">
+                <span class="checkmark"></span>
+              </label>
+              <label class="box container flex-row radio-container option-center">Blue
+                <input type="radio" name="color">
+                <span class="checkmark"></span>
+              </label>
+              <label class="box container flex-row radio-container option-center">Green
+                <input type="radio" name="color">
+                <span class="checkmark"></span>
+              </label>
+              <label class="box container flex-row radio-container option-center">Pink
+                <input type="radio" name="color">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+          <div id="tiresOptions" class="box container flex-col options-size">
+              <div class="box container flex-col optionTitle">Tires:</div>
+              <div class="box container flex-col options-wrapper">
+                <label class="box container flex-row radio-container option-center">Standard
+                  <input type="radio" name="tires">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Off-Road
+                  <input type="radio" name="tires">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Thin
+                  <input type="radio" name="tires">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+          </div>
+          <div id="enginesOptions" class="box container flex-col options-size">
+            <div class="box container flex-col optionTitle">Engines:</div>
+              <div class="box container flex-col options-wrapper">
+                <label class="box container flex-row radio-container option-center">Contruct 3
+                  <input type="radio" name="engine">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Unity
+                  <input type="radio" name="engine">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Unreal
+                  <input type="radio" name="engine">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+          </div>
+          <div id="otherOption" class="box container flex-col options-size">
+            <div class="box container flex-col optionTitle">Other:</div>
+              <div class="box container flex-col options-wrapper">
+                <label class="box container flex-row radio-container option-center">Bag
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Fan
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Handlebar Covers
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Headlight
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Reflectors
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Side Mirrors
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Speaker
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="box container flex-row radio-container option-center">Thermometer
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+          </div>
       </div>
       <div id="buttonArea" class="box container flex-col">
         <button class="button">Done</button>
