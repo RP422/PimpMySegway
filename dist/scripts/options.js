@@ -29,7 +29,7 @@ function loadComplete(evt) {
 let colorContainer = document.getElementById("colors");
 let engineContainer = document.getElementById("engines");
 let wheelContainer = document.getElementById("wheel");
-let engineContainer = document.getElementById("other");
+let otherContainer = document.getElementById("other");
 let equippedOptions = "";
 let totalPrice = 0;
 
@@ -94,12 +94,12 @@ const updateColor = newColor => {
 }
 
 const updateEngine = newEngine => {
-    data.ccurrentSegway.engine = newEngine;
+    data.currentSegway.engine = newEngine;
     updatePage();
 }
 
 const updateWheel = newWheel => {
-    data.ccurrentSegway.wheel = newWheel;
+    data.currentSegway.wheel = newWheel;
     updatePage();
 }
 
