@@ -88,34 +88,25 @@ const defaultChecked = () => {
 }
 
 // Containers to plop things in.
-let colorContainer = document.getElementById("colors");
-let engineContainer = document.getElementById("engines");
-let wheelContainer = document.getElementById("wheel");
-let otherContainer = document.getElementById("other");
 let equippedOptions = "";
 let totalPrice = 0;
 
 const updatePage = () => {
     updateSegwayImage();
-    //updatePrice();
 
-    // if(matchesPrebuilt()) {
-    //     equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
-    // }
+    equippedOptions = "<tr>" + data.current_segway.engine + " engine</tr><tr>$" + data.prices.engines[data.current_segway.engine] + "</tr>";
+    totalPrice += data.prices.engines[data.current_segway.engine];
 
-    equippedOptions = "<tr>" + data.currentSegway.engine + " engine</tr><tr>$" + data.prices.engines[data.currentSegway.engine] + "</tr>";
-    totalPrice += data.prices.engines[data.currentSegway.engine];
-
-    equippedOptions += "<tr>" + currentSegway.wheel + " wheels</tr><tr>$" + json.prices[currentSegway.wheel] + "</tr>";
-    totalPrice += json.prices[currentSegway.wheel];
+    equippedOptions += "<tr>" + current_segway.wheel + " wheels</tr><tr>$" + json.prices[current_segway.wheel] + "</tr>";
+    totalPrice += json.prices[current_segway.wheel];
     
-    equippedOptions += "<tr>" + currentSegway.color + " paint job</tr><tr>$" + json.prices[currentSegway.color] + "</tr>";
-    totalPrice += json.prices[currentSegway.color];
+    equippedOptions += "<tr>" + current_segway.color + " paint job</tr><tr>$" + json.prices[current_segway.color] + "</tr>";
+    totalPrice += json.prices[current_segway.color];
     
     json.otherFeatures.forEach(function(option) {
         let optionButton = document.getElementById(option);
 
-        if(currentSegway[option]) {
+        if(current_segway[option]) {
             optionButton.classList.add("active");
 
             equippedOptions += "<tr>" + option + "</tr><tr>$" + json.prices[option] + "</tr>";
@@ -136,11 +127,12 @@ const updatePage = () => {
     document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
 }
 
+// This should work, but needs testing.
 const matchesPrebuilt = () => {
     match = false;
 
     json.preBuilts.forEach(function(prebuilt) {
-        if(currentSegway == prebuilt) {
+        if(current_segway == prebuilt) {
             match = true;
         }
     })
@@ -148,9 +140,9 @@ const matchesPrebuilt = () => {
     return match;
 }
 
+// This should work, but needs testinge.
 const setPrebuilt = name => {
-    // This should work, but needs testing of course.
-    currentSegway = preBuilts[name];
+    current_segway = preBuilts[name];
     updatePage();
 }
 
@@ -167,43 +159,129 @@ const updateOption = option => {
 // TODO Figure out if these elements need anything inside them 
 //   other than an ID.
 const setupOptions = () => {
-    json.colors.forEach(function(element) {
-        let newElement = document.createElement("div");
-    
-        // Do stuff with the new element?
-        newElement.id = element;
-    
-        colorContainer.appendChild(newElement);
-    });
-    
-    json.engines.forEach(function(element) {
-        let newElement = document.createElement("div");
-    
-        // Do stuff with the new element?
-        newElement.id = element;
-    
-        engineContainer.appendChild(newElement);
-    });
-    
-    json.wheels.forEach(function(element) {
-        let newElement = document.createElement("div");
-    
-        // Do stuff with the new element?
-        newElement.id = element;
-    
-        wheelContainer.appendChild(newElement);
-    });
-    
-    json.otherFeatures.forEach(function(element) {
-        let newElement = document.createElement("div");
-    
-        // Do stuff with the new element?
-        newElement.id = element;
-    
-        otherContainer.appendChild(newElement);
-    });
+    options = document.createElement("div");
+    options.id = "optionsArea";
+    options.setAttribute("class", "box container flex-col");
 
-    updatePage();
+    colorContainer  = document.createElement("div");
+    colorContainer.id = "colorOptions";
+    colorContainer.setAttribute("class", "box container flex-col options-size");
+
+    tiresContainer = document.createElement("div");
+    tiresContainer.id = "tiresOptions";
+    tiresContainer.setAttribute("class", "box container flex-col options-size");
+
+    engineContainer = document.createElement("div");
+    engineContainer.id = "enginesOptions";
+    engineContainer.setAttribute("class", "box container flex-col options-size");
+
+    otherContainer = document.createElement("div");
+    otherContainer.id = "otherOptions";
+    otherContainer.setAttribute("class", "box container flex-col options-size");
+
+    colorTitle = document.createElement("div");
+    colorTitle.setAttribute("class", "box container flex-col optionTitle");
+    colorTitle.innerHTML = "Colors:";
+    colorContainer.appendChild(colorTitle);
+
+    colorOptionsWrapper = document.createElement("div");
+    colorOptionsWrapper.id = "colorOptionsWrapper";
+    colorOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
+
+    json.colors.forEach(function(element) {
+        label = document.createElement("label");
+        label.setAttribute("class", "box container flex-row radio-container option-center")
+        label.innerHTML = json.htmlValues.colors[element]
+
+        checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.onclick = "ifChecked()";
+        checkbox.value = element;
+
+        span = document.createElement("span");
+        span.setAttribute("class", "checkmark");
+
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        colorOptionsWrapper.appendChild(label);
+    });
+    colorContainer.appendChild(colorOptionsWrapper);
+    
+    wheelOptionsWrapper = document.createElement("div");
+    wheelOptionsWrapper.id = "tiresOptionsWrapper";
+    wheelOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
+
+    json.wheels.forEach(function(element) {
+        label = document.createElement("label");
+        label.setAttribute("class", "box container flex-row radio-container option-center")
+        label.innerHTML = json.htmlValues.wheels[element]
+
+        checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.onclick = "ifChecked()";
+        checkbox.value = element;
+
+        span = document.createElement("span");
+        span.setAttribute("class", "checkmark");
+
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        wheelOptionsWrapper.appendChild(label);
+    });
+    tiresContainer.appendChild(wheelOptionsWrapper);
+
+    engineOptionsWrapper = document.createElement("div");
+    engineOptionsWrapper.id = "engineOptionsWrapper";
+    engineOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
+
+    json.engines.forEach(function(element) {
+        label = document.createElement("label");
+        label.setAttribute("class", "box container flex-row radio-container option-center")
+        label.innerHTML = json.htmlValues.engines[element]
+
+        checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.onclick = "ifChecked()";
+        checkbox.value = element;
+
+        span = document.createElement("span");
+        span.setAttribute("class", "checkmark");
+
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        engineOptionsWrapper.appendChild(label);
+    });
+    engineContainer.appendChild(engineOptionsWrapper);
+    
+    otherOptionsWrapper = document.createElement("div");
+    otherOptionsWrapper.id = "otherOptionsWrapper";
+    otherOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
+
+    json.otherFeatures.forEach(function(element) {
+        label = document.createElement("label");
+        label.setAttribute("class", "box container flex-row radio-container option-center")
+        label.innerHTML = json.htmlValues.other[element]
+
+        checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.onclick = "ifChecked()";
+        checkbox.value = element;
+
+        span = document.createElement("span");
+        span.setAttribute("class", "checkmark");
+
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        otherOptionsWrapper.appendChild(label);
+    });
+    otherContainer.appendChild(otherOptionsWrapper);
+
+    options.appendChild(colorcontainer);
+    options.appendChild(tiresContainer);
+    options.appendChild(engineContainer);
+    options.appendChild(otherContainer);
+
+    return options;
 }
 
 const ifChecked = () => {
@@ -239,3 +317,4 @@ const ifChecked = () => {
 }
 
 loadData();
+setupOptions();
