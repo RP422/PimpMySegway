@@ -15,14 +15,41 @@ let current_segway = {
 }
 
 // Loads the json data
-function loadData() {
+const loadData = () => {
     request.open('GET', 'scripts/data.json');
     request.onload = loadComplete;
     request.send();
+    setDefaultSegway(json);
+    updateSegwayImage();
 }
 
-function loadComplete(evt) {
+const loadComplete = evt => {
     let json = JSON.parse(request.responseText);
+}
+
+const setDefaultSegway = j => {
+    for (let index in j.default_segway) {
+        for (let i in current_segway) {
+        current_segway[i] = j.default_segway[i];
+        }
+    }
+}
+  
+const updateSegwayImage = () => {
+    let segwayStyle = document.getElementById("segwayImages").style;
+    let urlString = "";
+    for (let i in current_segway) {
+        let opt = current_segway[i];
+        if (opt == true) {
+            urlString += `url(../images/new_images/${i}.png), `;
+        }
+    }
+    urlString += `url(../images/new_images/${current_segway.engine}.png), url(../images/new_images/${current_segway.color}.png), url(../images/new_images/${current_segway.wheel}.png)`;
+    console.log(urlString);
+    segwayStyle.background = urlString;
+    segwayStyle.backgroundPosition = "center";
+    segwayStyle.backgroundRepeat = "no-repeat";
+    segwayStyle.backgroundSize = "contain";
 }
 
 // Containers to plop things in.
@@ -34,40 +61,16 @@ let equippedOptions = "";
 let totalPrice = 0;
 
 const updatePage = () => {
-    // TODO Replace this with the function to update the image.
+    updateSegwayImage();
+    //updatePrice();
 
-    totalPrice = 0;
+    // if(matchesPrebuilt()) {
+    //     equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
+    // }
 
-    equippedOptions = "<tr>" + data.currentSegway.engine + " engine</tr><tr>$" + data.prices.engines[data.currentSegway.engine] + "</tr>";
-    totalPrice += data.prices.engines[data.currentSegway.engine];
+    // equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
 
-    equippedOptions += "<tr>" + data.currentSegway.wheel + " wheels</tr><tr>$" + data.prices.wheels[data.currentSegway.wheel] + "</tr>";
-    totalPrice += data.prices.wheels[data.currentSegway.wheel];
-    
-    equippedOptions += "<tr>" + data.currentSegway.color + " paint job</tr><tr>$" + data.prices.colors[data.currentSegway.color] + "</tr>";
-    totalPrice += data.prices.colors[data.currentSegway.color];
-    
-    data.otherFeatures.forEach(function(option) {
-        let optionButton = document.getElementById(option);
-
-        if(currentSegway[option]) {
-            optionButton.classList.add("active");
-
-            equippedOptions += "<tr>" + option + "</tr><tr>$" + data.prices.options[option] + "</tr>";
-            totalPrice += data.prices.options[option];
-        }
-        else {
-            optionButton.classList.remove("active");
-        }
-    });
-
-    if(matchesPrebuilt()) {
-        equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
-    }
-
-    equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
-
-    document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
+    // document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
 }
 
 const matchesPrebuilt = () => {
@@ -88,32 +91,14 @@ const setPrebuilt = name => {
     updatePage();
 }
 
-const updateColor = newColor => {
-    data.currentSegway.color = newColor;
-    updatePage();
-}
-
-const updateEngine = newEngine => {
-    data.currentSegway.engine = newEngine;
-    updatePage();
-}
-
-const updateWheel = newWheel => {
-    data.currentSegway.wheel = newWheel;
-    updatePage();
-}
-
 const updateOption = option => {
-    // Same as with setPrebuilt(). This should work,
-    //   but is untested.
-    if(data.currentSegway[option] == false) {
-        data.currentSegway[option] = true;
+    if (current_segway[option] == false) {
+        current_segway[option] = true;
     }
     else {
-        data.currentSegway[option] = false;
-    }
-
-    updatePrice();
+        current_segway[option] = false;
+    }  
+    
 }
 
 // TODO Figure out if these elements need anything inside them 
@@ -155,5 +140,37 @@ const setupOptions = () => {
         otherContainer.appendChild(newElement);
     });
 
+    updatePage();
+}
+
+const ifChecked = () => {
+    let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input')
+    for (let i in colorOptions) {
+        if (colorOptions[i].checked == true) {
+            current_segway.color = colorOptions[i].value;
+        }
+    }
+    let tiresOptions = document.getElementById('tiresOptionsWrapper').getElementsByTagName('input')
+    for (let i in tiresOptions) {
+        if (tiresOptions[i].checked == true) {
+            current_segway.wheel = tiresOptions[i].value;
+        }
+    }
+    let enginesOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input')
+    for (let i in enginesOptions) {
+        if (enginesOptions[i].checked == true) {
+            console.log(enginesOptions[i].value);
+            current_segway.engine = enginesOptions[i].value;
+        }
+    }
+    let otherOptions = document.getElementById('otherOptionsWrapper').getElementsByTagName('input');
+    for (let i in otherOptions) {
+        if (otherOptions[i].checked == true && current_segway[otherOptions[i].value] == false) {
+            updateOption(otherOptions[i].value);
+        }
+        if (otherOptions[i].checked == false && current_segway[otherOptions[i].value] == true) {
+            updateOption(otherOptions[i].value);
+        }
+    }
     updatePage();
 }
