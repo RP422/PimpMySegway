@@ -103,16 +103,44 @@ const updatePage = () => {
     //     equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
     // }
 
-    // equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
+    equippedOptions = "<tr>" + data.currentSegway.engine + " engine</tr><tr>$" + data.prices.engines[data.currentSegway.engine] + "</tr>";
+    totalPrice += data.prices.engines[data.currentSegway.engine];
 
-    // document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
+    equippedOptions += "<tr>" + currentSegway.wheel + " wheels</tr><tr>$" + json.prices[currentSegway.wheel] + "</tr>";
+    totalPrice += json.prices[currentSegway.wheel];
+    
+    equippedOptions += "<tr>" + currentSegway.color + " paint job</tr><tr>$" + json.prices[currentSegway.color] + "</tr>";
+    totalPrice += json.prices[currentSegway.color];
+    
+    json.otherFeatures.forEach(function(option) {
+        let optionButton = document.getElementById(option);
+
+        if(currentSegway[option]) {
+            optionButton.classList.add("active");
+
+            equippedOptions += "<tr>" + option + "</tr><tr>$" + json.prices[option] + "</tr>";
+            totalPrice += json.prices[option];
+        }
+        else {
+            optionButton.classList.remove("active");
+        }
+    });
+
+    if(matchesPrebuilt()) {
+        equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
+        totalPrice -= 300;
+    }
+
+    equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
+
+    document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
 }
 
 const matchesPrebuilt = () => {
     match = false;
 
-    data.preBuilts.forEach(function(prebuilt) {
-        if(data.currentSegway == prebuilt) {
+    json.preBuilts.forEach(function(prebuilt) {
+        if(currentSegway == prebuilt) {
             match = true;
         }
     })
@@ -122,7 +150,7 @@ const matchesPrebuilt = () => {
 
 const setPrebuilt = name => {
     // This should work, but needs testing of course.
-    currentSegway = data.preBuilts[name];
+    currentSegway = preBuilts[name];
     updatePage();
 }
 
@@ -139,7 +167,7 @@ const updateOption = option => {
 // TODO Figure out if these elements need anything inside them 
 //   other than an ID.
 const setupOptions = () => {
-    data.colors.forEach(function(element) {
+    json.colors.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -148,7 +176,7 @@ const setupOptions = () => {
         colorContainer.appendChild(newElement);
     });
     
-    data.engines.forEach(function(element) {
+    json.engines.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -157,7 +185,7 @@ const setupOptions = () => {
         engineContainer.appendChild(newElement);
     });
     
-    data.wheels.forEach(function(element) {
+    json.wheels.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -166,7 +194,7 @@ const setupOptions = () => {
         wheelContainer.appendChild(newElement);
     });
     
-    data.otherFeatures.forEach(function(element) {
+    json.otherFeatures.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
