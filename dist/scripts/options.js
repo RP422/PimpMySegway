@@ -15,14 +15,76 @@ let current_segway = {
 }
 
 // Loads the json data
-function loadData() {
+const loadData = () => {
     request.open('GET', 'scripts/data.json');
     request.onload = loadComplete;
     request.send();
 }
 
-function loadComplete(evt) {
+const loadComplete = evt => {
     let json = JSON.parse(request.responseText);
+    setDefaultSegway(json);
+    updateSegwayImage();
+    defaultChecked();
+}
+
+const setDefaultSegway = j => {
+    console.log("setting default segway...");
+    for (let index in j.default_segway) {
+        for (let i in current_segway) {
+        current_segway[i] = j.default_segway[i];
+        }
+    }
+}
+  
+const updateSegwayImage = () => {
+    console.log("updating segway image...");    
+    let segwayStyle = document.getElementById("segwayImages").style;
+    let urlString = "";
+    for (let i in current_segway) {
+        let opt = current_segway[i];
+        if (opt == true) {
+            urlString += `url(../images/new_images/${i}.png), `;
+        }
+    }
+    urlString += `url(../images/new_images/${current_segway.engine}.png), url(../images/new_images/${current_segway.color}.png), url(../images/new_images/${current_segway.wheel}.png)`;
+    console.log(urlString);
+    segwayStyle.background = urlString;
+    segwayStyle.backgroundPosition = "center";
+    segwayStyle.backgroundRepeat = "no-repeat";
+    segwayStyle.backgroundSize = "contain";
+}
+
+const defaultChecked = () => {
+    for (let i in current_segway) {
+        let opt = current_segway[i];
+        if (opt == true) {
+            let otherOptions = document.getElementById('otherOptionsWrapper').getElementsByTagName('input');
+            for (let option in otherOptions) {
+                if(otherOptions[option].value == i) {
+                    otherOptions[option].checked = true;
+                }
+            } 
+        }
+    }
+    let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input');
+    for (let option in colorOptions) {
+        if (colorOptions[option].value == current_segway.color) {
+            colorOptions[option].checked = true;
+        }
+    }
+    let engineOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input');
+    for (let option in engineOptions) {
+        if (engineOptions[option].value == current_segway.engine) {
+            engineOptions[option].checked = true;
+        }
+    }
+    let tireOptions = document.getElementById('tiresOptionsWrapper').getElementsByTagName('input');
+    for (let option in tireOptions) {
+        if (tireOptions[option].value == current_segway.wheel) {
+            tireOptions[option].checked = true;
+        }
+    }
 }
 
 // Containers to plop things in.
@@ -34,27 +96,30 @@ let equippedOptions = "";
 let totalPrice = 0;
 
 const updatePage = () => {
-    // TODO Replace this with the function to update the image.
+    updateSegwayImage();
+    //updatePrice();
 
-    totalPrice = 0;
+    // if(matchesPrebuilt()) {
+    //     equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
+    // }
 
     equippedOptions = "<tr>" + data.currentSegway.engine + " engine</tr><tr>$" + data.prices.engines[data.currentSegway.engine] + "</tr>";
     totalPrice += data.prices.engines[data.currentSegway.engine];
 
-    equippedOptions += "<tr>" + data.currentSegway.wheel + " wheels</tr><tr>$" + data.prices.wheels[data.currentSegway.wheel] + "</tr>";
-    totalPrice += data.prices.wheels[data.currentSegway.wheel];
+    equippedOptions += "<tr>" + currentSegway.wheel + " wheels</tr><tr>$" + json.prices[currentSegway.wheel] + "</tr>";
+    totalPrice += json.prices[currentSegway.wheel];
     
-    equippedOptions += "<tr>" + data.currentSegway.color + " paint job</tr><tr>$" + data.prices.colors[data.currentSegway.color] + "</tr>";
-    totalPrice += data.prices.colors[data.currentSegway.color];
+    equippedOptions += "<tr>" + currentSegway.color + " paint job</tr><tr>$" + json.prices[currentSegway.color] + "</tr>";
+    totalPrice += json.prices[currentSegway.color];
     
-    data.otherFeatures.forEach(function(option) {
+    json.otherFeatures.forEach(function(option) {
         let optionButton = document.getElementById(option);
 
         if(currentSegway[option]) {
             optionButton.classList.add("active");
 
-            equippedOptions += "<tr>" + option + "</tr><tr>$" + data.prices.options[option] + "</tr>";
-            totalPrice += data.prices.options[option];
+            equippedOptions += "<tr>" + option + "</tr><tr>$" + json.prices[option] + "</tr>";
+            totalPrice += json.prices[option];
         }
         else {
             optionButton.classList.remove("active");
@@ -63,6 +128,7 @@ const updatePage = () => {
 
     if(matchesPrebuilt()) {
         equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
+        totalPrice -= 300;
     }
 
     equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
@@ -73,8 +139,8 @@ const updatePage = () => {
 const matchesPrebuilt = () => {
     match = false;
 
-    data.preBuilts.forEach(function(prebuilt) {
-        if(data.currentSegway == prebuilt) {
+    json.preBuilts.forEach(function(prebuilt) {
+        if(currentSegway == prebuilt) {
             match = true;
         }
     })
@@ -84,42 +150,24 @@ const matchesPrebuilt = () => {
 
 const setPrebuilt = name => {
     // This should work, but needs testing of course.
-    currentSegway = data.preBuilts[name];
-    updatePage();
-}
-
-const updateColor = newColor => {
-    data.currentSegway.color = newColor;
-    updatePage();
-}
-
-const updateEngine = newEngine => {
-    data.currentSegway.engine = newEngine;
-    updatePage();
-}
-
-const updateWheel = newWheel => {
-    data.currentSegway.wheel = newWheel;
+    currentSegway = preBuilts[name];
     updatePage();
 }
 
 const updateOption = option => {
-    // Same as with setPrebuilt(). This should work,
-    //   but is untested.
-    if(data.currentSegway[option] == false) {
-        data.currentSegway[option] = true;
+    if (current_segway[option] == false) {
+        current_segway[option] = true;
     }
     else {
-        data.currentSegway[option] = false;
-    }
-
-    updatePrice();
+        current_segway[option] = false;
+    }  
+    
 }
 
 // TODO Figure out if these elements need anything inside them 
 //   other than an ID.
 const setupOptions = () => {
-    data.colors.forEach(function(element) {
+    json.colors.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -128,7 +176,7 @@ const setupOptions = () => {
         colorContainer.appendChild(newElement);
     });
     
-    data.engines.forEach(function(element) {
+    json.engines.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -137,7 +185,7 @@ const setupOptions = () => {
         engineContainer.appendChild(newElement);
     });
     
-    data.wheels.forEach(function(element) {
+    json.wheels.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -146,7 +194,7 @@ const setupOptions = () => {
         wheelContainer.appendChild(newElement);
     });
     
-    data.otherFeatures.forEach(function(element) {
+    json.otherFeatures.forEach(function(element) {
         let newElement = document.createElement("div");
     
         // Do stuff with the new element?
@@ -157,3 +205,37 @@ const setupOptions = () => {
 
     updatePage();
 }
+
+const ifChecked = () => {
+    let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input');
+    for (let i in colorOptions) {
+        if (colorOptions[i].checked == true) {
+            current_segway.color = colorOptions[i].value;
+        }
+    }
+    let tiresOptions = document.getElementById('tiresOptionsWrapper').getElementsByTagName('input');
+    for (let i in tiresOptions) {
+        if (tiresOptions[i].checked == true) {
+            current_segway.wheel = tiresOptions[i].value;
+        }
+    }
+    let enginesOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input');
+    for (let i in enginesOptions) {
+        if (enginesOptions[i].checked == true) {
+            console.log(enginesOptions[i].value);
+            current_segway.engine = enginesOptions[i].value;
+        }
+    }
+    let otherOptions = document.getElementById('otherOptionsWrapper').getElementsByTagName('input');
+    for (let i in otherOptions) {
+        if (otherOptions[i].checked == true && current_segway[otherOptions[i].value] == false) {
+            updateOption(otherOptions[i].value);
+        }
+        if (otherOptions[i].checked == false && current_segway[otherOptions[i].value] == true) {
+            updateOption(otherOptions[i].value);
+        }
+    }
+    updatePage();
+}
+
+loadData();
