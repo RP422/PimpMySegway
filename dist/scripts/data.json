@@ -6,14 +6,14 @@
         "red": 50,
         "yellow": 50,
         "standard": 150,
-        "off-road": 250,
+        "off_road": 250,
         "thin": 120,
-        "contruct_3": 320,
+        "construct_3": 320,
         "unity": 420,
         "unreal": 720,
         "bag": 60,
         "fan": 40,
-        "handlbar_covers": 60,
+        "handlebar_covers": 60,
         "headlight": 140,
         "reflectors": 240,
         "side_mirrors": 340,
@@ -49,7 +49,6 @@
     ],
     "preBuilts": {
         "princess": {
-            "url": "princess.png",
             "color": "pink",
             "engine": "unity",
             "wheel": "thin",
@@ -63,7 +62,6 @@
             "thermometer":      false
         },
         "big_boi": {
-            "url": "big_boi.png",
             "color": "green",
             "engine": "unreal",
             "wheel": "off_road",
@@ -77,7 +75,6 @@
             "thermometer":      false
         },
         "sad_lad": {
-            "url": "sad_lad.png",
             "color": "blue",
             "engine": "construct_3",
             "wheel": "standard",
@@ -91,7 +88,6 @@
             "thermometer":      true
         },
         "lightning_mcqueen": {
-            "url": "lightning_mcqueen.png",
             "color": "red",
             "engine": "unreal",
             "wheel": "standard",
@@ -105,7 +101,6 @@
             "thermometer":      false
         },
         "explorer": {
-            "url": "explorer.png",
             "color": "yellow",
             "engine": "unity",
             "wheel": "off_road",
@@ -150,8 +145,8 @@
     },
     "default_segway": {
         "color": "red",
-        "engine": "unity",
-        "wheel": "standard",
+        "engine": "construct_3",
+        "wheel": "thin",
         "bag":              false,
         "fan":              false,
         "handlebar_covers":  false,

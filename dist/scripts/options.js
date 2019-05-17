@@ -3,7 +3,7 @@ let request = new XMLHttpRequest();
 let current_segway = {
   "color": "",
   "engine": "",
-  "wheel": "",
+  "wheel":   "",
   "bag":                false,
   "fan":                false,
   "handlebar_covers":   false,
@@ -13,6 +13,8 @@ let current_segway = {
   "speaker":            false,
   "thermometer":        false
 }
+
+let preBuiltID = ["princess", "big_boi","sad_lad","lightning_mcqueen","explorer"];
 
 // Loads the json data
 const loadData = () => {
@@ -28,14 +30,13 @@ const loadComplete = evt => {
     container.appendChild(setupPreBuilt(json));
     container.appendChild(setupSegway());
     container.appendChild(setupOptions(json));
-
+    setPrebuildEventListener();
     setDefaultSegway(json);
-    updateSegwayImage();
-    defaultChecked();
+    updatePage();
+    setChecked(false);
 }
 
 const setDefaultSegway = j => {
-    console.log("setting default segway...");
     for (let index in j.default_segway) {
         for (let i in current_segway) {
         current_segway[i] = j.default_segway[i];
@@ -43,8 +44,7 @@ const setDefaultSegway = j => {
     }
 }
   
-const updateSegwayImage = () => {
-    console.log("updating segway image...");    
+const updateSegwayImage = () => {   
     let segwayStyle = document.getElementById("segwayImages").style;
     let urlString = "";
     for (let i in current_segway) {
@@ -54,18 +54,38 @@ const updateSegwayImage = () => {
         }
     }
     urlString += `url(../images/engines/${current_segway.engine}.png), url(../images/colors/${current_segway.color}.png), url(../images/tires/${current_segway.wheel}.png)`;
-    console.log(urlString);
+    
     segwayStyle.background = urlString;
     segwayStyle.backgroundPosition = "center";
     segwayStyle.backgroundRepeat = "no-repeat";
     segwayStyle.backgroundSize = "contain";
 }
 
-const defaultChecked = () => {
+
+const setChecked = isReset => {
+    let otherOptions = document.getElementById('otherOptionsWrapper').getElementsByTagName('input');
+    let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input');
+    let engineOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input');
+    let tireOptions = document.getElementById('tiresOptionsWrapper').getElementsByTagName('input');
+    
+    if (isReset) {
+        for (let option in colorOptions) {
+            colorOptions[option].checked = false;
+        } 
+        for (let option in engineOptions) {
+            engineOptions[option].checked = false;
+        } 
+        for (let option in tireOptions) {
+            tireOptions[option].checked = false;
+        } 
+        for (let option in otherOptions) {
+            otherOptions[option].checked = false;
+        } 
+    }
+
     for (let i in current_segway) {
         let opt = current_segway[i];
         if (opt == true) {
-            let otherOptions = document.getElementById('otherOptionsWrapper').getElementsByTagName('input');
             for (let option in otherOptions) {
                 if(otherOptions[option].value == i) {
                     otherOptions[option].checked = true;
@@ -73,82 +93,67 @@ const defaultChecked = () => {
             } 
         }
     }
-    let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input');
     for (let option in colorOptions) {
         if (colorOptions[option].value == current_segway.color) {
             colorOptions[option].checked = true;
         }
     }
-    let engineOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input');
     for (let option in engineOptions) {
         if (engineOptions[option].value == current_segway.engine) {
             engineOptions[option].checked = true;
         }
     }
-    let tireOptions = document.getElementById('tiresOptionsWrapper').getElementsByTagName('input');
     for (let option in tireOptions) {
         if (tireOptions[option].value == current_segway.wheel) {
             tireOptions[option].checked = true;
         }
     }
+    
+    
 }
 
-// Containers to plop things in.
-let equippedOptions = "";
-let totalPrice = 0;
+const calculatePrice = () => {
+    let priceArea = document.getElementById("priceArea");
+    let totalPrice = 0;
+    let json = JSON.parse(request.responseText);
+    for (let i in current_segway) {
+        let opt = current_segway[i];
+        if (opt == true) {
+            totalPrice += json.prices[i];
+        }
+        else if (opt != true && opt != false) {           
+            totalPrice += json.prices[opt];
+        }
+    }
+    if (matchesPrebuilt(json)) {
+        totalPrice -= 300;
+    } else {
+
+    }
+    priceArea.innerHTML = `Total Price: $${totalPrice}`;
+    
+}
 
 const updatePage = () => {
     updateSegwayImage();
-
-    equippedOptions = "<tr>" + data.current_segway.engine + " engine</tr><tr>$" + data.prices.engines[data.current_segway.engine] + "</tr>";
-    totalPrice += data.prices.engines[data.current_segway.engine];
-
-    equippedOptions += "<tr>" + current_segway.wheel + " wheels</tr><tr>$" + json.prices[current_segway.wheel] + "</tr>";
-    totalPrice += json.prices[current_segway.wheel];
-    
-    equippedOptions += "<tr>" + current_segway.color + " paint job</tr><tr>$" + json.prices[current_segway.color] + "</tr>";
-    totalPrice += json.prices[current_segway.color];
-    
-    json.otherFeatures.forEach(function(option) {
-        let optionButton = document.getElementById(option);
-
-        if(current_segway[option]) {
-            optionButton.classList.add("active");
-
-            equippedOptions += "<tr>" + option + "</tr><tr>$" + json.prices[option] + "</tr>";
-            totalPrice += json.prices[option];
-        }
-        else {
-            optionButton.classList.remove("active");
-        }
-    });
-
-    if(matchesPrebuilt()) {
-        equippedOptions += "<tr>Pre-Built Discount</tr><tr>-$300</tr>";
-        totalPrice -= 300;
-    }
-
-    equippedOptions += "<tr>Total Price</tr><tr>$" + totalPrice + "</tr>";
-
-    document.getElementById("equippedOptionsTable").innerHTML = equippedOptions;
+    calculatePrice();
 }
 
-// This should work, but needs testing.
-const matchesPrebuilt = () => {
-    match = false;
 
-    json.preBuilts.forEach(function(prebuilt) {
-        if(current_segway == prebuilt) {
+const matchesPrebuilt = json => {
+    match = false;
+    for (let p in json.preBuilts) {
+        if(JSON.stringify(current_segway) === JSON.stringify(json.preBuilts[p])) {
             match = true;
         }
-    })
-
+    }
     return match;
 }
 
-// This should work, but needs testing.
 const setPrebuilt = name => {
-    current_segway = preBuilts[name];
+    let json = JSON.parse(request.responseText);
+    current_segway = json.preBuilts[name]; 
+    setChecked(true);
     updatePage();
 }
 
@@ -218,7 +223,7 @@ const setupOptions = (json) => {
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
-        price.innerHTML = "Price" // "$" + json.prices[element];
+        price.innerHTML = `$${json.prices[element]}`;
 
         labelWrapper.appendChild(label);
         labelWrapper.appendChild(price);
@@ -258,7 +263,7 @@ const setupOptions = (json) => {
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
-        price.innerHTML = "Price" // "$" + json.prices[element];
+        price.innerHTML = `$${json.prices[element]}`;
 
         labelWrapper.appendChild(label);
         labelWrapper.appendChild(price);
@@ -298,7 +303,7 @@ const setupOptions = (json) => {
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
-        price.innerHTML = "Price" // "$" + json.prices[element];
+        price.innerHTML = `$${json.prices[element]}`;
 
         labelWrapper.appendChild(label);
         labelWrapper.appendChild(price);
@@ -337,7 +342,7 @@ const setupOptions = (json) => {
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
-        price.innerHTML = "Price" // "$" + json.prices[element];
+        price.innerHTML = `$${json.prices[element]}`;
 
         labelWrapper.appendChild(label);
         labelWrapper.appendChild(price);
@@ -405,14 +410,31 @@ const setupSegway = () =>{
     let viewImagesDiv = document.createElement("div");
     viewImagesDiv.id = "segwayImages";
 
+    let priceWrapper = document.createElement("div");
+    priceWrapper.id = "priceWrapper";
+    priceWrapper.setAttribute("class", "box container flex-row");
+
     let priceAreaDiv = document.createElement("div");
     priceAreaDiv.id = "priceArea";
     priceAreaDiv.setAttribute("class", "box container flex-col");
     priceAreaDiv.textContent = `Prices`;
 
+    let discountAreaDiv = document.createElement("div");
+    discountAreaDiv.id = "discountArea";
+    discountAreaDiv.setAttribute("class", "box container flex-col");
+
+    let discountDiv= document.createElement("div");
+    discountDiv.setAttribute("class", "box container flex-col discount");
+    discountDiv.textContent = `Discount`;
+
+    discountAreaDiv.appendChild(discountDiv);
+
+    priceWrapper.appendChild(priceAreaDiv);
+    priceWrapper.appendChild(discountAreaDiv);
+
     viewAreaDiv.appendChild(viewImagesDiv);
     viewContainerDiv.appendChild(viewAreaDiv);
-    viewContainerDiv.appendChild(priceAreaDiv);
+    viewContainerDiv.appendChild(priceWrapper);
 
     return viewContainerDiv;
 }
@@ -433,7 +455,6 @@ const ifChecked = () => {
     let enginesOptions = document.getElementById('enginesOptionsWrapper').getElementsByTagName('input');
     for (let i in enginesOptions) {
         if (enginesOptions[i].checked == true) {
-            console.log(enginesOptions[i].value);
             current_segway.engine = enginesOptions[i].value;
         }
     }
@@ -453,6 +474,14 @@ function replace(){
     document.getElementById("buttonArea").onclick = function () {
         location.href = "http://localhost:3000/thankyou.html";
     };
+}
+
+function setPrebuildEventListener(){
+    preBuiltID.forEach((id) => {
+        document.getElementById(id).addEventListener("click", () => {
+            setPrebuilt(id);
+        });
+    })
 }
 
 loadData();
