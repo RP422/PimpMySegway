@@ -29,11 +29,11 @@
     ],
     "wheels": [
         "standard",
-        "off-road",
+        "off_road",
         "thin"
     ],
     "engines": [
-        "contruct_3",
+        "construct_3",
         "unity",
         "unreal"
     ],
@@ -117,6 +117,35 @@
             "side_mirrors":      false,
             "speaker":          false,
             "thermometer":      false
+        }
+    },
+    "htmlValues": {
+        "colors": {
+            "red": "Red",
+            "yellow": "Yellow",
+            "blue": "Blue",
+            "green": "Green",
+            "pink": "Pink"
+        },
+        "wheels": {
+            "standard": "Standard",
+            "off_road": "Off-Road",
+            "thin": "Thin"
+        },
+        "engines": {
+            "construct_3": "Construct 3",
+            "unity": "Unity",
+            "unreal": "Unreal"
+        },
+        "other": {
+            "bag": "Bag",
+            "fan": "Fan",
+            "handlebar_covers": "Handlebar Covers",
+            "headlight": "Headlight",
+            "reflectors": "Reflectors",
+            "side_mirrors": "Side Mirrors",
+            "speaker": "Speaker",
+            "thermometer": "Thermometer"
         }
     },
     "default_segway": {

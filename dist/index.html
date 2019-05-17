@@ -9,31 +9,222 @@
 </head>
 <body>
   <div id="mainContainer" class="box container flex-row">
+
     <div id="preBuiltContainer" class="box container flex-col">
-      <div class="box pre-built-size">Option 1</div>
-      <div class="box pre-built-size">Option 2</div>
-      <div class="box pre-built-size">Option 3</div>
-      <div class="box pre-built-size">Option 4</div>
-      <div class="box pre-built-size">Option 5</div>
+      <div class="box container flex-col pre-built-size">
+        <div class="box pre-built-name">Big Boi</div>
+        <div id="big_boi" class="box"></div>
+      </div>
+      <div class="box container flex-col pre-built-size">
+        <div class="box pre-built-name">Explorer</div>
+        <div id="explorer" class="box"></div>
+      </div>
+      <div class="box container flex-col pre-built-size">
+        <div class="box pre-built-name">Lightning McQueen</div>
+        <div id="lightning_mcqueen" class="box"></div>
+      </div>
+      <div class="box container flex-col pre-built-size">
+        <div class="box pre-built-name">Princess</div>
+        <div id="princess" class="box"></div>
+      </div>
+      <div class="box container flex-col pre-built-size">
+        <div class="box pre-built-name">Sad Lad</div>
+        <div id="sad_lad" class="box"></div>
+      </div>
     </div>
 
-    <div id="segwayViewContainer" class="box container flex-col">
-      <div id="segwayArea" class="box">Segway Area</div>
-      <div id="priceArea" class="box">Price Area</div>
+    <div id="segwayViewContainer" class="box container">
+      <div id="segwayArea" class="box container">
+        <div id="segwayImages"></div>
+      </div>
+      <div id="priceArea" class="box container flex-col">Price Area</div>
     </div>
+
     <div id="optionsContainer" class="box container flex-col">
       <div id="optionsArea" class="box container flex-col">
-          <div id="colorOptions" class="options-size">Color Options</div>
-          <div id="tiresOptions" class="options-size">Tires Options</div>
-          <div id="enginesOptions" class="options-size">Engines Options</div>
-          <div id="bagOption" class="options-size">Bag Options</div>
-          <div id="fanOption" class="options-size">Fan Options</div>
-          <div id="headlightOption" class="options-size">Headlight Options</div>
+          <div id="colorOptions" class="box container flex-col options-size">
+            <div class="box container flex-col optionTitle">Colors:</div>
+            <div id="colorOptionsWrapper" class="box container flex-col options-wrapper">
+              
+              <div class="box container flex-row">
+                <label class="box container flex-row radio-container option-center">Red
+                  <input type="radio" name="color" onclick="ifChecked()" value="red">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="box optionPrices option-center">Price</div>
+              </div>
+
+              <div class="box container flex-row">
+                <label class="box container flex-row radio-container option-center">Yellow
+                  <input type="radio" name="color" onclick="ifChecked()" value="yellow">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="box optionPrices option-center">Price</div>                
+              </div>
+
+              <div class="box container flex-row">
+                <label class="box container flex-row radio-container option-center">Blue
+                  <input type="radio" name="color" onclick="ifChecked()" value="blue">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="box optionPrices option-center">Price</div>
+              </div>
+
+              <div class="box container flex-row">
+                <label class="box container flex-row radio-container option-center">Green
+                  <input type="radio" name="color" onclick="ifChecked()" value="green">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="box optionPrices option-center">Price</div>
+              </div>
+
+              <div class="box container flex-row">
+                <label class="box container flex-row radio-container option-center">Pink
+                  <input type="radio" name="color" onclick="ifChecked()" value="pink">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="box optionPrices option-center">Price</div> 
+              </div>
+
+            </div>
+          </div>
+          <div id="tiresOptions" class="box container flex-col options-size">
+              <div class="box container flex-col optionTitle">Tires:</div>
+              <div id="tiresOptionsWrapper" class="box container flex-col options-wrapper">
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Standard
+                    <input type="radio" name="tires" onclick="ifChecked()" value="standard">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Off-Road
+                    <input type="radio" name="tires" onclick="ifChecked()" value="off_road">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Thin
+                    <input type="radio" name="tires" onclick="ifChecked()" value="thin">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+              </div>
+          </div>
+          <div id="enginesOptions" class="box container flex-col options-size">
+            <div class="box container flex-col optionTitle">Engines:</div>
+            <div id="enginesOptionsWrapper" class="box container flex-col options-wrapper">
+
+              <div class="box container flex-row">
+                <label class="box container flex-row radio-container option-center">Construct 3
+                  <input type="radio" name="engine" onclick="ifChecked()" value="construct_3">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="box optionPrices option-center">Price</div>
+              </div>
+              <div class="box container flex-row">
+                <label class="box container flex-row radio-container option-center">Unity
+                  <input type="radio" name="engine" onclick="ifChecked()" value="unity">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="box optionPrices option-center">Price</div>
+              </div>
+              <div class="box container flex-row">
+                <label class="box container flex-row radio-container option-center">Unreal
+                  <input type="radio" name="engine" onclick="ifChecked()" value="unreal">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="box optionPrices option-center">Price</div>
+              </div>
+
+            </div>
+          </div>
+          <div id="otherOption" class="box container flex-col options-size">
+            <div class="box container flex-col optionTitle">Other:</div>
+              <div id="otherOptionsWrapper" class="box container flex-col options-wrapper">
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Bag
+                    <input type="checkbox" onclick="ifChecked()" value="bag">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Fan
+                    <input type="checkbox" onclick="ifChecked()" value="fan">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Handlebar Covers
+                    <input type="checkbox" onclick="ifChecked()" value="handlebar_covers">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Headlight
+                    <input type="checkbox" onclick="ifChecked()" value="headlight">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Reflectors
+                    <input type="checkbox" onclick="ifChecked()" value="reflectors">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Side Mirrors
+                    <input type="checkbox" onclick="ifChecked()" value="side_mirrors">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Speaker
+                    <input type="checkbox" onclick="ifChecked()" value="speaker">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+
+                <div class="box container flex-row">
+                  <label class="box container flex-row radio-container option-center">Thermometer
+                    <input type="checkbox" onclick="ifChecked()" value="thermometer">
+                    <span class="checkmark"></span>
+                  </label>
+                  <div class="box optionPrices option-center">Price</div>
+                </div>
+                
+              </div>
+          </div>
       </div>
-      <div id="buttonArea" class="box">Finish Button Area</div>
+      <div id="buttonArea" class="box container flex-col">
+        <button class="button">Done</button>
+      </div>
     </div>
+    
   </div>
 
-  <script src='main.js'></script>
+  
+  <!-- <script src='scripts/options.js'></script> -->
 </body>
 </html>
