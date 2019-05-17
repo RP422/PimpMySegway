@@ -29,7 +29,7 @@
     ],
     "wheels": [
         "standard",
-        "off-road",
+        "off_road",
         "thin"
     ],
     "engines": [
@@ -129,7 +129,7 @@
         },
         "wheels": {
             "standard": "Standard",
-            "off-road": "Off-Road",
+            "off_road": "Off-Road",
             "thin": "Thin"
         },
         "engines": {
