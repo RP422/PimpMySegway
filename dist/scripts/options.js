@@ -449,4 +449,10 @@ const ifChecked = () => {
     updatePage();
 }
 
+function replace(){
+    document.getElementById("buttonArea").onclick = function () {
+        location.href = "http://localhost:3000/thankyou.html";
+    };
+}
+
 loadData();
