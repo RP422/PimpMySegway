@@ -215,8 +215,7 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        labelWrapper.appendChild(label);
-        colorOptionsWrapper.appendChild(labelWrapper);
+        otherOptionsWrapper.appendChild(label);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
@@ -254,8 +253,7 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        labelWrapper.appendChild(label);
-        colorOptionsWrapper.appendChild(labelWrapper);
+        otherOptionsWrapper.appendChild(label);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
@@ -293,8 +291,7 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        labelWrapper.appendChild(label);
-        colorOptionsWrapper.appendChild(labelWrapper);
+        otherOptionsWrapper.appendChild(label);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
@@ -331,8 +328,7 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        labelWrapper.appendChild(label);
-        colorOptionsWrapper.appendChild(labelWrapper);
+        otherOptionsWrapper.appendChild(label);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
