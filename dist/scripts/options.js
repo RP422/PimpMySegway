@@ -212,6 +212,7 @@ const setupOptions = (json) => {
     
     wheelOptionsWrapper = document.createElement("div");
     wheelOptionsWrapper.id = "tiresOptionsWrapper";
+    wheelOptionsWrapper.innerHTML = "Tires:";
     wheelOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.wheels.forEach(function(element) {
@@ -235,6 +236,7 @@ const setupOptions = (json) => {
 
     engineOptionsWrapper = document.createElement("div");
     engineOptionsWrapper.id = "engineOptionsWrapper";
+    engineOptionsWrapper.innerHTML = "Engines:";
     engineOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.engines.forEach(function(element) {
@@ -258,6 +260,7 @@ const setupOptions = (json) => {
     
     otherOptionsWrapper = document.createElement("div");
     otherOptionsWrapper.id = "otherOptionsWrapper";
+    otherOptionsWrapper.innerHTML = "Other:";
     otherOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.otherFeatures.forEach(function(element) {
