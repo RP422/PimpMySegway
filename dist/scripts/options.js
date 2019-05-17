@@ -25,11 +25,13 @@ const loadComplete = evt => {
     let json = JSON.parse(request.responseText);
 
     container = document.getElementById("mainContainer");
+    container.appendChild(setupPreBuilt(json));
+    container.appendChild(setupSegway());
     container.appendChild(setupOptions(json));
 
-    // setDefaultSegway(json);
-    // updateSegwayImage();
-    // defaultChecked();
+    setDefaultSegway(json);
+    updateSegwayImage();
+    defaultChecked();
 }
 
 const setDefaultSegway = j => {
