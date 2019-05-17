@@ -257,7 +257,7 @@ html, body {
     max-height: 100%;
     max-width: 100%;
   }
-  #colorOptions, #tiresOptions, #enginesOptions, #otherOption, .options-wrapper {
+  #colorOptions, #tiresOptions, #enginesOptions, #otherOptions, .options-wrapper {
     flex-direction: row;
     min-width: fit-content;
   }

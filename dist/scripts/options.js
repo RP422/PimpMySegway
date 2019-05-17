@@ -3,7 +3,7 @@ let request = new XMLHttpRequest();
 let current_segway = {
   "color": "",
   "engine": "",
-  "wheel":   "",
+  "wheel":  "",
   "bag":                false,
   "fan":                false,
   "handlebar_covers":   false,
@@ -27,9 +27,11 @@ const loadComplete = evt => {
     let json = JSON.parse(request.responseText);
 
     container = document.getElementById("mainContainer");
+
     container.appendChild(setupPreBuilt(json));
     container.appendChild(setupSegway());
     container.appendChild(setupOptions(json));
+
     setPrebuildEventListener();
     setDefaultSegway(json);
     updatePage();
@@ -60,7 +62,6 @@ const updateSegwayImage = () => {
     segwayStyle.backgroundRepeat = "no-repeat";
     segwayStyle.backgroundSize = "contain";
 }
-
 
 const setChecked = isReset => {
     let otherOptions = document.getElementById('otherOptionsWrapper').getElementsByTagName('input');
@@ -113,7 +114,6 @@ const setChecked = isReset => {
 }
 
 const calculatePrice = () => {
-    let priceArea = document.getElementById("priceArea");
     let totalPrice = 0;
     let json = JSON.parse(request.responseText);
     for (let i in current_segway) {
@@ -127,10 +127,8 @@ const calculatePrice = () => {
     }
     if (matchesPrebuilt(json)) {
         totalPrice -= 300;
-    } else {
-
     }
-    priceArea.innerHTML = `Total Price: $${totalPrice}`;
+    document.getElementById("priceArea").innerHTML = `Total Price: $${totalPrice}`;
     
 }
 
@@ -139,14 +137,14 @@ const updatePage = () => {
     calculatePrice();
 }
 
-
 const matchesPrebuilt = json => {
     match = false;
     for (let p in json.preBuilts) {
-        if(JSON.stringify(current_segway) === JSON.stringify(json.preBuilts[p])) {
+        if (JSON.stringify(current_segway) === JSON.stringify(json.preBuilts[p])) {
             match = true;
         }
     }
+    console.log(match);
     return match;
 }
 
@@ -410,31 +408,14 @@ const setupSegway = () =>{
     let viewImagesDiv = document.createElement("div");
     viewImagesDiv.id = "segwayImages";
 
-    let priceWrapper = document.createElement("div");
-    priceWrapper.id = "priceWrapper";
-    priceWrapper.setAttribute("class", "box container flex-row");
-
     let priceAreaDiv = document.createElement("div");
     priceAreaDiv.id = "priceArea";
     priceAreaDiv.setAttribute("class", "box container flex-col");
     priceAreaDiv.textContent = `Prices`;
 
-    let discountAreaDiv = document.createElement("div");
-    discountAreaDiv.id = "discountArea";
-    discountAreaDiv.setAttribute("class", "box container flex-col");
-
-    let discountDiv= document.createElement("div");
-    discountDiv.setAttribute("class", "box container flex-col discount");
-    discountDiv.textContent = `Discount`;
-
-    discountAreaDiv.appendChild(discountDiv);
-
-    priceWrapper.appendChild(priceAreaDiv);
-    priceWrapper.appendChild(discountAreaDiv);
-
     viewAreaDiv.appendChild(viewImagesDiv);
     viewContainerDiv.appendChild(viewAreaDiv);
-    viewContainerDiv.appendChild(priceWrapper);
+    viewContainerDiv.appendChild(priceAreaDiv);
 
     return viewContainerDiv;
 }
