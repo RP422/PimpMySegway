@@ -1,6 +1,7 @@
 html, body {
   margin: 0px;
   height: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
    -khtml-user-select: none; /* Konqueror HTML */
@@ -24,7 +25,7 @@ html, body {
   flex-direction: row;
 }
 
-#mainContainer {
+#segway {
   height: 100%;
 }
 #preBuiltContainer {
@@ -61,12 +62,13 @@ html, body {
 
 
 #optionsArea {
+  padding: 20px;
   overflow-y: scroll;
   border: 1px solid lightgray;
 }
 .options-size {
   min-height: fit-content;
-  /* border: 1px solid black; */
+  margin: 15px;
 }
 .option-center {
   align-self: center;
@@ -239,35 +241,15 @@ html, body {
   margin: 10px;
   font-size: 1.2em;
   margin-bottom: 12px;
+  max-width: fit-content;
 }
 
 
 
 
 
-
-
-
-
-@media only screen and (max-width: 825px) {
-  .pre-built-size {
-    min-width: 50px;
-  }
-  .pre-built-img {
-    max-height: 100%;
-    max-width: 100%;
-  }
-  #colorOptions, #tiresOptions, #enginesOptions, #otherOptions, .options-wrapper {
-    flex-direction: row;
-    min-width: fit-content;
-  }
-  .optionTitle {
-    margin: 20px;
-  }
-}
-
-@media only screen and (max-width: 750px) {
-  #mainContainer {
+@media all and (max-width: 750px) {
+  #segway {
     flex-direction: column;
   }
   #preBuiltContainer {
@@ -307,6 +289,23 @@ html, body {
   }
   .option-center {
     width: fit-content;
+    min-width: fit-content;
+  }
+  .pre-built-size {
+    width: 50px;
+  }
+  .pre-built-img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+  #colorOptions, #tiresOptions, #enginesOptions, #otherOptions, .options-wrapper {
+    flex-direction: row;
+    min-width: fit-content;
+  }
+  .optionTitle {
+    margin: 20px;
+  }
+  .label-wrapper {
     min-width: fit-content;
   }
 }

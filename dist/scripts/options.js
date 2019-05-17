@@ -26,7 +26,8 @@ const loadData = () => {
 const loadComplete = evt => {
     let json = JSON.parse(request.responseText);
 
-    container = document.getElementById("mainContainer");
+    container = document.getElementById("segway");
+    container.setAttribute("class", "box container flex-row");
 
     container.appendChild(setupPreBuilt(json));
     container.appendChild(setupSegway());
@@ -127,9 +128,10 @@ const calculatePrice = () => {
     }
     if (matchesPrebuilt(json)) {
         totalPrice -= 300;
-    }
-    document.getElementById("priceArea").innerHTML = `Total Price: $${totalPrice}`;
-    
+        document.getElementById("priceArea").innerHTML = `Total Price: $${totalPrice} (Discount!)`;
+    } else {
+        document.getElementById("priceArea").innerHTML = `Total Price: $${totalPrice}`;
+    }   
 }
 
 const updatePage = () => {
@@ -149,7 +151,7 @@ const matchesPrebuilt = json => {
 }
 
 const setPrebuilt = name => {
-    let json = JSON.parse(request.responseText);
+    let json = JSON.parse(request.responseText);    
     current_segway = json.preBuilts[name]; 
     setChecked(true);
     updatePage();
@@ -201,7 +203,7 @@ const setupOptions = (json) => {
 
     json.colors.forEach(function(element) {
         labelWrapper = document.createElement("div");
-        labelWrapper.setAttribute("class", "box container flex-row");
+        labelWrapper.setAttribute("class", "box container flex-row label-wrapper");
 
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
@@ -241,7 +243,7 @@ const setupOptions = (json) => {
 
     json.wheels.forEach(function(element) {
         labelWrapper = document.createElement("div");
-        labelWrapper.setAttribute("class", "box container flex-row");
+        labelWrapper.setAttribute("class", "box container flex-row label-wrapper");
 
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
@@ -281,7 +283,7 @@ const setupOptions = (json) => {
 
     json.engines.forEach(function(element) {
         labelWrapper = document.createElement("div");
-        labelWrapper.setAttribute("class", "box container flex-row");
+        labelWrapper.setAttribute("class", "box container flex-row label-wrapper");
 
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
@@ -321,7 +323,7 @@ const setupOptions = (json) => {
 
     json.otherFeatures.forEach(function(element) {
         labelWrapper = document.createElement("div");
-        labelWrapper.setAttribute("class", "box container flex-row");
+        labelWrapper.setAttribute("class", "box container flex-row label-wrapper");
 
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
@@ -382,7 +384,7 @@ const setupPreBuilt = (j) =>{
 
         let prename = document.createElement("div");
         prename.setAttribute("class", "box pre-built-name");
-        prename.textContent = `${name}`;
+        prename.textContent = `${j.htmlValues.pre_built[name]}`;
 
         let preid = document.createElement("div");
         preid.id = `${name}`;
@@ -458,6 +460,7 @@ function replace(){
 }
 
 function setPrebuildEventListener(){
+    
     preBuiltID.forEach((id) => {
         document.getElementById(id).addEventListener("click", () => {
             setPrebuilt(id);

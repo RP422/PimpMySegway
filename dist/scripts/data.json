@@ -141,6 +141,13 @@
             "side_mirrors": "Side Mirrors",
             "speaker": "Speaker",
             "thermometer": "Thermometer"
+        },
+        "pre_built": {
+            "princess": "Princess",
+            "big_boi": "Big Boi",
+            "sad_lad": "Sad Lad",
+            "lightning_mcqueen": "Lightning McQueen",
+            "explorer": "Explorer"
         }
     },
     "default_segway": {

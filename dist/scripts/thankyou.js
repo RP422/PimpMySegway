@@ -29,7 +29,7 @@ const setupThankyou = () =>{
 
 function redirect(){
     document.getElementById("finalButtonWrapper").onclick = function () {
-        location.href = "http://localhost:3000/welcome.html";
+        location.href = "http://localhost:3000";
     };    
 }
 
