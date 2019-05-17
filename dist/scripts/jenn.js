@@ -7,9 +7,4 @@ function setPrebuildEventListener(){
         });
     })
 }
-function replace(){
-    document.getElementById("buttonArea").onclick = function () {
-        location.href = "http://localhost:3000/thankyou.html";
-    };
-}
 setPrebuildEventListener();
