@@ -196,6 +196,9 @@ const setupOptions = (json) => {
     colorOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.colors.forEach(function(element) {
+        labelWrapper = document.createElement("div");
+        labelWrapper.setAttribute("class", "box container flex-row");
+
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
         label.innerHTML = json.htmlValues.colors[element]
@@ -211,7 +214,8 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        colorOptionsWrapper.appendChild(label);
+        labelWrapper.appendChild(label);
+        colorOptionsWrapper.appendChild(labelWrapper);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
@@ -231,6 +235,9 @@ const setupOptions = (json) => {
     wheelOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.wheels.forEach(function(element) {
+        labelWrapper = document.createElement("div");
+        labelWrapper.setAttribute("class", "box container flex-row");
+
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
         label.innerHTML = json.htmlValues.wheels[element]
@@ -246,7 +253,8 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        wheelOptionsWrapper.appendChild(label);
+        labelWrapper.appendChild(label);
+        colorOptionsWrapper.appendChild(labelWrapper);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
@@ -266,6 +274,9 @@ const setupOptions = (json) => {
     engineOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.engines.forEach(function(element) {
+        labelWrapper = document.createElement("div");
+        labelWrapper.setAttribute("class", "box container flex-row");
+
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
         label.innerHTML = json.htmlValues.engines[element]
@@ -281,7 +292,8 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        engineOptionsWrapper.appendChild(label);
+        labelWrapper.appendChild(label);
+        colorOptionsWrapper.appendChild(labelWrapper);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
@@ -301,6 +313,9 @@ const setupOptions = (json) => {
     otherOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.otherFeatures.forEach(function(element) {
+        labelWrapper = document.createElement("div");
+        labelWrapper.setAttribute("class", "box container flex-row");
+
         label = document.createElement("label");
         label.setAttribute("class", "box container flex-row radio-container option-center")
         label.innerHTML = json.htmlValues.other[element]
@@ -315,7 +330,8 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        otherOptionsWrapper.appendChild(label);
+        labelWrapper.appendChild(label);
+        colorOptionsWrapper.appendChild(labelWrapper);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
