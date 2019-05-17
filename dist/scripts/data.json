@@ -33,7 +33,7 @@
         "thin"
     ],
     "engines": [
-        "contruct_3",
+        "construct_3",
         "unity",
         "unreal"
     ],
