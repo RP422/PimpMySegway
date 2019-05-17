@@ -318,6 +318,55 @@ const setupOptions = (json) => {
     return optionsContainer;
 }
 
+const setupPreBuilt = (j) =>{
+    let containerDiv = document.createElement("div");
+    containerDiv.id = "preBuiltContainer";
+    containerDiv.setAttribute("class", "box container flex-col");
+    
+    for(let name in j.preBuilts){
+        let presize = document.createElement("div");
+        presize.setAttribute("class", "box container flex-col pre-built-size");
+
+        let prename = document.createElement("div");
+        prename.setAttribute("class", "box pre-built-name");
+        prename.textContent = `${name}`;
+
+        let preid = document.createElement("div");
+        preid.id = `${name}`;
+        preid.setAttribute("class", "box");
+
+        presize.appendChild(prename);
+        presize.appendChild(preid);
+        containerDiv.appendChild(presize);
+    }
+
+    return containerDiv;
+}
+
+const setupSegway = () =>{
+    let viewContainerDiv = document.createElement("div");
+    viewContainerDiv.id = "segwayViewContainer";
+    viewContainerDiv.setAttribute("class", "box container");
+
+    let viewAreaDiv = document.createElement("div");
+    viewAreaDiv.id = "segwayArea";
+    viewAreaDiv.setAttribute("class", "box container");
+
+    let viewImagesDiv = document.createElement("div");
+    viewImagesDiv.id = "segwayImages";
+
+    let priceAreaDiv = document.createElement("div");
+    priceAreaDiv.id = "priceArea";
+    priceAreaDiv.setAttribute("class", "box container flex-col");
+    priceAreaDiv.textContent = `Prices`;
+
+    viewAreaDiv.appendChild(viewImagesDiv);
+    viewContainerDiv.appendChild(viewAreaDiv);
+    viewContainerDiv.appendChild(priceAreaDiv);
+
+    return viewContainerDiv;
+}
+
 const ifChecked = () => {
     let colorOptions = document.getElementById('colorOptionsWrapper').getElementsByTagName('input');
     for (let i in colorOptions) {
