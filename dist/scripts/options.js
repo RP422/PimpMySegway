@@ -359,6 +359,7 @@ const setupOptions = (json) => {
 
     button = document.createElement("button");
     button.setAttribute("class", "button");
+    button.setAttribute("onclick", "replace()");
     button.innerHTML = "Done"
 
     buttonDiv.appendChild(button);
