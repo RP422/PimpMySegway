@@ -148,7 +148,8 @@ const matchesPrebuilt = () => {
 
 // This should work, but needs testing.
 const setPrebuilt = name => {
-    current_segway = preBuilts[name];    updatePage();
+    current_segway = preBuilts[name];
+    updatePage();
 }
 
 const updateOption = option => {
