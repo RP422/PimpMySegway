@@ -214,13 +214,15 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        otherOptionsWrapper.appendChild(label);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
         price.innerHTML = "Price" // "$" + json.prices[element];
 
-        colorOptionsWrapper.appendChild(price);
+        labelWrapper.appendChild(label);
+        labelWrapper.appendChild(price);
+
+        colorOptionsWrapper.appendChild(labelWrapper);
     });
     colorContainer.appendChild(colorOptionsWrapper);
     
@@ -252,13 +254,15 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        otherOptionsWrapper.appendChild(label);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
         price.innerHTML = "Price" // "$" + json.prices[element];
 
-        wheelOptionsWrapper.appendChild(price);
+        labelWrapper.appendChild(label);
+        labelWrapper.appendChild(price);
+
+        wheelOptionsWrapper.appendChild(labelWrapper);
     });
     tiresContainer.appendChild(wheelOptionsWrapper);
 
@@ -290,13 +294,15 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        otherOptionsWrapper.appendChild(label);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
         price.innerHTML = "Price" // "$" + json.prices[element];
 
-        engineOptionsWrapper.appendChild(price);
+        labelWrapper.appendChild(label);
+        labelWrapper.appendChild(price);
+
+        engineOptionsWrapper.appendChild(labelWrapper);
     });
     engineContainer.appendChild(engineOptionsWrapper);
 
@@ -327,13 +333,15 @@ const setupOptions = (json) => {
 
         label.appendChild(checkbox);
         label.appendChild(span);
-        otherOptionsWrapper.appendChild(label);
 
         price = document.createElement("div");
         price.setAttribute("class", "box optionPrices option-center");
         price.innerHTML = "Price" // "$" + json.prices[element];
 
-        otherOptionsWrapper.appendChild(price);
+        labelWrapper.appendChild(label);
+        labelWrapper.appendChild(price);
+
+        otherOptionsWrapper.appendChild(labelWrapper);
     });
     otherContainer.appendChild(otherOptionsWrapper);
 
