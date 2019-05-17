@@ -201,8 +201,9 @@ const setupOptions = (json) => {
         label.innerHTML = json.htmlValues.colors[element]
 
         checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.onclick = "ifChecked()";
+        checkbox.type = "radio";
+        checkbox.name = "color";
+        checkbox.setAttribute("onclick", "ifChecked()");
         checkbox.value = element;
 
         span = document.createElement("span");
@@ -229,8 +230,9 @@ const setupOptions = (json) => {
         label.innerHTML = json.htmlValues.wheels[element]
 
         checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.onclick = "ifChecked()";
+        checkbox.type = "radio";
+        checkbox.name = "tires";
+        checkbox.setAttribute("onclick", "ifChecked()");
         checkbox.value = element;
 
         span = document.createElement("span");
@@ -257,8 +259,9 @@ const setupOptions = (json) => {
         label.innerHTML = json.htmlValues.engines[element]
 
         checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.onclick = "ifChecked()";
+        checkbox.type = "radio";
+        checkbox.name = "engine";
+        checkbox.setAttribute("onclick", "ifChecked()");
         checkbox.value = element;
 
         span = document.createElement("span");
@@ -286,7 +289,7 @@ const setupOptions = (json) => {
 
         checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.onclick = "ifChecked()";
+        checkbox.setAttribute("onclick", "ifChecked()");
         checkbox.value = element;
 
         span = document.createElement("span");
@@ -311,6 +314,7 @@ const setupOptions = (json) => {
 
     button = document.createElement("button");
     button.setAttribute("class", "button");
+    button.innerHTML = "Done"
 
     buttonDiv.appendChild(button);
     optionsContainer.appendChild(buttonDiv);
