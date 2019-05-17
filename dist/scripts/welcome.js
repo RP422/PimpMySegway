@@ -29,7 +29,7 @@ const setupWelcome = () =>{
 }
 function MoveOn(){
     document.getElementById("startButtonWrapper").onclick = function () {
-        location.href = "http://localhost:3000/demo.html";
+        location.href = "http://localhost:3000/build.html";
     };    
 }
 
