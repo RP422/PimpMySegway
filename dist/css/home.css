@@ -4,6 +4,7 @@
 }
   
 #titleContainer{
+    text-align: center;
     font-size: 5em;
     align-self: center;
     max-height: fit-content;
@@ -25,6 +26,7 @@
 }
   
 #finalTitleContainer{
+    text-align: center;
     font-size: 5em;
     align-self: center;
     max-height: fit-content;
