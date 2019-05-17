@@ -218,7 +218,7 @@ const setupOptions = (json) => {
     
     wheelTitle = document.createElement("div");
     wheelTitle.setAttribute("class", "box container flex-col optionTitle");
-    wheeltitle.innerHTML = "Tires:";
+    wheelTitle.innerHTML = "Tires:";
     tiresContainer.appendChild(wheelTitle);
 
     wheelOptionsWrapper = document.createElement("div");
@@ -246,11 +246,11 @@ const setupOptions = (json) => {
 
     engineTitle = document.createElement("div");
     engineTitle.setAttribute("class", "box container flex-col optionTitle");
-    enginetitle.innerHTML = "Engines:";
+    engineTitle.innerHTML = "Engines:";
     engineContainer.appendChild(engineTitle);
 
     engineOptionsWrapper = document.createElement("div");
-    engineOptionsWrapper.id = "engineOptionsWrapper";
+    engineOptionsWrapper.id = "enginesOptionsWrapper";
     engineOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.engines.forEach(function(element) {
@@ -274,7 +274,7 @@ const setupOptions = (json) => {
 
     otherTitle = document.createElement("div");
     otherTitle.setAttribute("class", "box container flex-col optionTitle");
-    othertitle.innerHTML = "Other:";
+    otherTitle.innerHTML = "Other:";
     otherContainer.appendChild(otherTitle);
     
     otherOptionsWrapper = document.createElement("div");
@@ -307,7 +307,7 @@ const setupOptions = (json) => {
 
     optionsContainer.appendChild(options);
 
-    buttonDiv = Document.createElement("div");
+    buttonDiv = document.createElement("div");
     buttonDiv.id = "buttonArea";
     buttonDiv.setAttribute("class", "box container flex-col");
 
