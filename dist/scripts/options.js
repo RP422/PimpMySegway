@@ -162,6 +162,10 @@ const updateOption = option => {
 // TODO Figure out if these elements need anything inside them 
 //   other than an ID.
 const setupOptions = (json) => {
+    optionsContainer = document.createElement("div");
+    optionsContainer.id = "optionsContainer";
+    optionsContainer.setAttribute("class", "box container flex-col");
+
     options = document.createElement("div");
     options.id = "optionsArea";
     options.setAttribute("class", "box container flex-col");
@@ -210,9 +214,13 @@ const setupOptions = (json) => {
     });
     colorContainer.appendChild(colorOptionsWrapper);
     
+    wheelTitle = document.createElement("div");
+    wheelTitle.setAttribute("class", "box container flex-col optionTitle");
+    wheeltitle.innerHTML = "Tires:";
+    tiresContainer.appendChild(wheelTitle);
+
     wheelOptionsWrapper = document.createElement("div");
     wheelOptionsWrapper.id = "tiresOptionsWrapper";
-    wheelOptionsWrapper.innerHTML = "Tires:";
     wheelOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.wheels.forEach(function(element) {
@@ -234,9 +242,13 @@ const setupOptions = (json) => {
     });
     tiresContainer.appendChild(wheelOptionsWrapper);
 
+    engineTitle = document.createElement("div");
+    engineTitle.setAttribute("class", "box container flex-col optionTitle");
+    enginetitle.innerHTML = "Engines:";
+    engineContainer.appendChild(engineTitle);
+
     engineOptionsWrapper = document.createElement("div");
     engineOptionsWrapper.id = "engineOptionsWrapper";
-    engineOptionsWrapper.innerHTML = "Engines:";
     engineOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.engines.forEach(function(element) {
@@ -257,10 +269,14 @@ const setupOptions = (json) => {
         engineOptionsWrapper.appendChild(label);
     });
     engineContainer.appendChild(engineOptionsWrapper);
+
+    otherTitle = document.createElement("div");
+    otherTitle.setAttribute("class", "box container flex-col optionTitle");
+    othertitle.innerHTML = "Other:";
+    otherContainer.appendChild(otherTitle);
     
     otherOptionsWrapper = document.createElement("div");
     otherOptionsWrapper.id = "otherOptionsWrapper";
-    otherOptionsWrapper.innerHTML = "Other:";
     otherOptionsWrapper.setAttribute("class", "box container flex-col options-wrapper");
 
     json.otherFeatures.forEach(function(element) {
@@ -287,7 +303,19 @@ const setupOptions = (json) => {
     options.appendChild(engineContainer);
     options.appendChild(otherContainer);
 
-    return options;
+    optionsContainer.appendChild(options);
+
+    buttonDiv = Document.createElement("div");
+    buttonDiv.id = "buttonArea";
+    buttonDiv.setAttribute("class", "box container flex-col");
+
+    button = document.createElement("button");
+    button.setAttribute("class", "button");
+
+    buttonDiv.appendChild(button);
+    optionsContainer.appendChild(buttonDiv);
+
+    return optionsContainer;
 }
 
 const ifChecked = () => {
